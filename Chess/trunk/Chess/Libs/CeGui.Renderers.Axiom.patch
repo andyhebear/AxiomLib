@@ -1,0 +1,126 @@
+Index: Source/Renderer.cs
+===================================================================
+--- Source/Renderer.cs	(revision 95)
++++ Source/Renderer.cs	(working copy)
+@@ -51,7 +51,7 @@
+     window,
+     RenderQueueGroupID.Overlay,
+     false,
+-    Root.Instance.SceneManagers.GetSceneManager(SceneType.Generic)
++    Root.Instance.CreateSceneManager(SceneType.Generic)
+   ) {}
+ 
+   /// <summary>Constructor for renderer class that uses Axiom (tm) for rendering</summary>
+@@ -66,7 +66,7 @@
+     window,
+     queueID,
+     false,
+-    Root.Instance.SceneManagers.GetSceneManager(SceneType.Generic)
++    Root.Instance.CreateSceneManager(SceneType.Generic)
+   ) {}
+ 
+   /// <summary>Constructor for renderer class that uses Axiom (tm) for rendering</summary>
+@@ -84,7 +84,7 @@
+     window,
+     queueID,
+     postQueue,
+-    Root.Instance.SceneManagers.GetSceneManager(SceneType.Generic)
++    Root.Instance.CreateSceneManager(SceneType.Generic)
+   ) {}
+ 
+   /// <summary>Constructor for renderer class that uses Axiom (tm) for rendering</summary>
+@@ -106,7 +106,7 @@
+     window,
+     queueID,
+     postQueue,
+-    Root.Instance.SceneManagers.GetSceneManager(sceneType)
++    Root.Instance.CreateSceneManager(sceneType)
+   ) { }
+ 
+   #endregion Overloaded constructors for default arguments
+@@ -506,7 +506,7 @@
+     renderSystem.SetTextureUnitFiltering(0, FilterOptions.Linear, FilterOptions.Linear, FilterOptions.Point);
+     renderSystem.SetTextureAddressingMode(0, TextureAddressing.Clamp);
+     renderSystem.SetTextureMatrix(0, global::Axiom.Math.Matrix4.Identity);
+-    renderSystem.SetAlphaRejectSettings(0, CompareFunction.AlwaysPass, 0);
++    renderSystem.SetAlphaRejectSettings(CompareFunction.AlwaysPass, 0, false);
+     renderSystem.SetTextureBlendMode(0, unitState.ColorBlendMode);
+     renderSystem.SetTextureBlendMode(0, unitState.AlphaBlendMode);
+ 
+@@ -646,34 +646,32 @@
+ 
+     // unhook from current scene manager.
+     if(this.sceneManager != null) {
+-      this.sceneManager.QueueStarted -= new RenderQueueEvent(SceneManager_QueueStarted);
+-      this.sceneManager.QueueEnded -= new RenderQueueEvent(SceneManager_QueueEnded);
++      this.sceneManager.QueueStarted -= SceneManager_QueueStarted;
++      this.sceneManager.QueueEnded -= SceneManager_QueueEnded;
+       this.sceneManager = null;
+     }
+ 
+     // hook new scene manager if that is not NULL
+     if(sceneManager != null) {
+       this.sceneManager = sceneManager;
+-      this.sceneManager.QueueStarted += new RenderQueueEvent(SceneManager_QueueStarted);
+-      this.sceneManager.QueueEnded += new RenderQueueEvent(SceneManager_QueueEnded);
++      this.sceneManager.QueueStarted += SceneManager_QueueStarted;
++      this.sceneManager.QueueEnded += SceneManager_QueueEnded;
+     }
+ 
+   }
+ 
+-  private bool SceneManager_QueueStarted(RenderQueueGroupID priority) {
+-    if(!postQueue && (queueID == priority)) {
++  private void SceneManager_QueueStarted(object sender, SceneManager.BeginRenderQueueEventArgs e)
++  {
++    if(!postQueue && (queueID == e.RenderQueueId)) {
+       GuiSystem.Instance.RenderGui();
+     }
+-
+-    return false;
+   }
+ 
+-  private bool SceneManager_QueueEnded(RenderQueueGroupID priority) {
+-    if(postQueue && (queueID == priority)) {
++  private void SceneManager_QueueEnded(object sender, SceneManager.EndRenderQueueEventArgs e)
++  {
++    if(postQueue && (queueID == e.RenderQueueId)) {
+       GuiSystem.Instance.RenderGui();
+     }
+-
+-    return false;
+   }
+ 
+   protected Rect displayArea;
+Index: Source/Texture.cs
+===================================================================
+--- Source/Texture.cs	(revision 95)
++++ Source/Texture.cs	(working copy)
+@@ -47,7 +47,7 @@
+     // free up an existing texture
+     FreeAxiomTexture();
+ 
+-      texture = TextureManager.Instance.Load(fileName, TextureType.TwoD, 1, 1.0f, 1);
++    texture = TextureManager.Instance.Load(fileName, ResourceGroupManager.DefaultResourceGroupName, TextureType.TwoD, 1, 1.0f, true);
+ 
+     if(texture != null) {
+       // cache the texture size info
+@@ -72,7 +72,7 @@
+ 
+     string uniqueName = string.Format("CEGUI_texture_{0}", Guid.NewGuid());
+ 
+-    texture = TextureManager.Instance.LoadImage(uniqueName, image);
++    texture = TextureManager.Instance.LoadImage(uniqueName, ResourceGroupManager.DefaultResourceGroupName, image);
+ 
+     this.width = bufferWidth;
+     this.height = bufferHeight;
+@@ -91,7 +91,8 @@
+ 
+     // Attempt to create empty texture with given size
+     texture = TextureManager.Instance.CreateManual(
+-      uniqueName, TextureType.TwoD, size, size, 0, global::Axiom.Media.PixelFormat.A8R8G8B8,
++      uniqueName, ResourceGroupManager.DefaultResourceGroupName,
++      TextureType.TwoD, size, size, 0, global::Axiom.Media.PixelFormat.A8R8G8B8,
+       TextureUsage.Default
+     );
+ 

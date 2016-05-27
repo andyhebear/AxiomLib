@@ -1,0 +1,35 @@
+1.1
+* Adding a lens flare effect when we look at the sun
+* New sun texture to simulate the halo around the sun
+* Better support of shadows during rises of the sun
+* Better support of lighting of the moon
+* Applying CliffCawley's patch to use DeltaTime instead of system clock
+* Applying CliffCawley's patch for NAE 0.57 and fixing for NAE 0.58
+* Some others bug fixes
+* Day/Night transition are smoother
+* Adding support for translation
+
+1.0
+* Sun: CastShadows enabled (with directional lightning)
+* An unique entity in the map editor
+* More options editable in resource & map editors
+* Billboard for drawing (instead of spherical meshes)
+* Astronomically correct sun position.
+* Bug fix with ATI cards and OpenGL
+* Support for one moon
+* Moon's phases using a cg shader.
+* Moon will hide stars behind it
+* Moon's fades in and out at sunset and sunrise.
+* Astronomically correct moon position. 
+* Support for older NAE's version
+* Separated dll for an easier installation
+
+
+0.1
+* Dynamic sky colour
+* Dynamic ambient light
+* Dynamic fog colour and density
+* Dynamic sun color
+* Sun
+* Starfield 
+* LayeredClouds

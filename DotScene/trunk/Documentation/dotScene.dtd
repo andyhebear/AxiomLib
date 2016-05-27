@@ -1,0 +1,726 @@
+<!ELEMENT scene (sceneManagerOption*, shadowSettings?,
+				 resourceGroup?, renderTargets?, externals?, environment?, light*, camera*, nodes?,
+				 viewports?, animations?, animationStates?,
+				 terrain?, octree?, userDataReference?)>
+<!ATTLIST scene
+	formatVersion		CDATA	#REQUIRED
+	id					ID		#IMPLIED
+	sceneManagerType	CDATA	#IMPLIED
+	sceneManagerName	CDATA	#IMPLIED
+	minOgreVersion		CDATA	#IMPLIED
+	author				CDATA	#IMPLIED
+	
+	showBoundingBoxes	(true|false) "false"
+>
+
+<!ELEMENT sceneManagerOption EMPTY>
+<!ATTLIST sceneManagerOption
+	name	CDATA	#REQUIRED
+	type	(bool | real | int | unsigned_int | short | unsigned_short | long | unsigned_long | size_t |
+			string | vector3 | matrix3 | matrix4 | quaternion | colourvalue | movableObject | camera | node) #REQUIRED
+	value	CDATA	#REQUIRED
+>
+
+<!ELEMENT shadowSettings (colourDiffuse?, shadowTextureConfig*)>
+<!ATTLIST shadowSettings
+	shadowTechnique							(none |
+											 stencilModulative | stencilAdditive |
+											 textureModulative | textureAdditive |
+											 textureModulativeIntegrated | textureAdditiveIntegrated ) "none"
+	
+	showDebugShadows						(true|false)	"false"
+	shadowFarDistance						CDATA			#IMPLIED
+	
+	shadowDirectionalLightExtrusionDistance	CDATA			"10000"
+	shadowIndexBufferSize					CDATA			"51200"
+	shadowUseInfiniteFarPlane				(true|false)	"true"
+
+
+	shadowTextureCount						CDATA			#IMPLIED
+	shadowTextureSize						CDATA			#IMPLIED
+	shadowTexturePixelFormat				(PF_UNKNOWN | PF_L8 | PF_BYTE_L | PF_L16 | PF_SHORT_L | PF_A8 | PF_BYTE_A | PF_A4L4 |
+											PF_BYTE_LA | PF_R5G6B5 | PF_B5G6R5 | PF_R3G3B2 | PF_A4R4G4B4 | PF_A1R5G5B5 | PF_R8G8B8 |
+											PF_B8G8R8 | PF_A8R8G8B8 | PF_A8B8G8R8 | PF_B8G8R8A8 | PF_R8G8B8A8 | PF_X8R8G8B8 |
+											PF_X8B8G8R8 | PF_BYTE_RGB | PF_BYTE_BGR | PF_BYTE_BGRA | PF_BYTE_RGBA | PF_A2R10G10B10 |
+											PF_A2B10G10R10 | PF_DXT1 | PF_DXT2 | PF_DXT3 | PF_DXT4 | PF_DXT5 | PF_FLOAT16_R |
+											PF_FLOAT16_RGB | PF_FLOAT16_RGBA | PF_FLOAT32_R | PF_FLOAT32_RGB | PF_FLOAT32_RGBA |
+											PF_FLOAT16_GR | PF_FLOAT32_GR | PF_DEPTH | PF_SHORT_RGBA | PF_SHORT_GR | PF_SHORT_RGB |
+											PF_COUNT )	#IMPLIED
+	
+	shadowDirLightTextureOffset				CDATA			"0.6"
+	shadowTextureFadeStart					CDATA			"0.7"
+	shadowTextureFadeEnd					CDATA			"0.9"
+	shadowTextureSelfShadow					(true|false)	#IMPLIED
+	shadowTextureCasterMaterial				CDATA			#IMPLIED
+	shadowTextureReceiverMaterial			CDATA			#IMPLIED
+	shadowCasterRenderBackFaces				(true|false)	"true"
+>
+
+<!ELEMENT shadowTextureConfig EMPTY>
+<!ATTLIST shadowTextureConfig
+	shadowIndex		CDATA	#REQUIRED
+	width			CDATA	#REQUIRED
+	height			CDATA	#REQUIRED
+	pixelFormat		(PF_UNKNOWN | PF_L8 | PF_BYTE_L | PF_L16 | PF_SHORT_L | PF_A8 | PF_BYTE_A | PF_A4L4 | PF_BYTE_LA | PF_R5G6B5 | 
+					PF_B5G6R5 | PF_R3G3B2 | PF_A4R4G4B4 | PF_A1R5G5B5 | PF_R8G8B8 | PF_B8G8R8 | PF_A8R8G8B8 | PF_A8B8G8R8 | 
+					PF_B8G8R8A8 | PF_R8G8B8A8 | PF_X8R8G8B8 | PF_X8B8G8R8 | PF_BYTE_RGB | PF_BYTE_BGR | PF_BYTE_BGRA | PF_BYTE_RGBA | 
+					PF_A2R10G10B10 | PF_A2B10G10R10 | PF_DXT1 | PF_DXT2 | PF_DXT3 | PF_DXT4 | PF_DXT5 | PF_FLOAT16_R | PF_FLOAT16_RGB | 
+					PF_FLOAT16_RGBA | PF_FLOAT32_R | PF_FLOAT32_RGB | PF_FLOAT32_RGBA | PF_FLOAT16_GR | PF_FLOAT32_GR | PF_DEPTH | 
+					PF_SHORT_RGBA | PF_SHORT_GR | PF_SHORT_RGB | PF_COUNT )	#REQUIRED
+>
+
+
+<!ELEMENT resourceGroup (resourceLocation*, resourceDeclaration*)>
+<!ATTLIST resourceGroup
+	name				CDATA	#REQUIRED
+>
+
+<!ELEMENT resourceLocation EMPTY>
+<!ATTLIST resourceLocation
+	name				CDATA			#REQUIRED
+	type				CDATA			#REQUIRED
+	recursive			(true|false)	"true"
+	relativeTo			(dotSceneFileLocation | exeFileLocation | currentWorkingDir | absolute) "dotSceneFileLocation"
+>
+
+<!ELEMENT resourceDeclaration (NameValuePairList?)>
+<!ATTLIST resourceDeclaration
+	name				CDATA			#REQUIRED
+	resourceType		CDATA			#REQUIRED
+>
+
+<!ELEMENT NameValuePairList (NameValuePair+) >
+<!ELEMENT NameValuePair	EMPTY >
+<!ATTLIST NameValuePair
+	name				CDATA			#REQUIRED
+	value				CDATA			#REQUIRED
+>
+
+
+
+<!--
+  **************************************************************************************
+  **************************************************************************************
+  **************************************************************************************
+-->
+
+<!ELEMENT renderTargets (renderWindow*, renderTexture*, multiRenderTarget*)>
+
+<!ELEMENT renderWindow EMPTY>
+<!ATTLIST renderWindow
+	name				CDATA 					#REQUIRED
+	width				CDATA 					#REQUIRED
+	height				CDATA 					#REQUIRED
+	fullscreen			(true | false) 			"false"
+	
+	priority			CDATA					#IMPLIED
+	active				(true | false) 			"true"
+	autoUpdated			(true | false) 			"true"
+	primary				(true | false)			"true"
+	
+	visible				(true | false)			"true"
+	
+	title				CDATA					#IMPLIED
+	colourDepth			CDATA 					#IMPLIED
+	left				CDATA					#IMPLIED
+	top					CDATA					#IMPLIED
+	depthBuffer 		(true | false)			"true"
+	FSAA				CDATA					"0"
+	displayFrequency	CDATA					#IMPLIED
+	vsync				(true | false) 			"false"
+	border				(none | fixed | resize)	"resize"
+	outerDimensions		(true | false)			"false"
+>
+
+<!ELEMENT renderTexture (NameValuePairList?)>
+<!ATTLIST renderTexture
+	name				CDATA 						#REQUIRED
+	textureType 		(1d | 2d | 3d | cubeMap) 	"2d"	
+	width				CDATA 						#REQUIRED
+	height				CDATA 						#REQUIRED
+	depth				CDATA 						#REQUIRED
+	numberOfMipmaps		CDATA						#IMPLIED
+	pixelFormat 		(PF_UNKNOWN | PF_L8 | PF_BYTE_L | PF_L16 | PF_SHORT_L | PF_A8 | PF_BYTE_A | PF_A4L4 |
+						PF_BYTE_LA | PF_R5G6B5 | PF_B5G6R5 | PF_R3G3B2 | PF_A4R4G4B4 | PF_A1R5G5B5 | PF_R8G8B8 |
+						PF_B8G8R8 | PF_A8R8G8B8 | PF_A8B8G8R8 | PF_B8G8R8A8 | PF_R8G8B8A8 | PF_X8R8G8B8 |
+						PF_X8B8G8R8 | PF_BYTE_RGB | PF_BYTE_BGR | PF_BYTE_BGRA | PF_BYTE_RGBA | PF_A2R10G10B10 |
+						PF_A2B10G10R10 | PF_DXT1 | PF_DXT2 | PF_DXT3 | PF_DXT4 | PF_DXT5 | PF_FLOAT16_R |
+						PF_FLOAT16_RGB | PF_FLOAT16_RGBA | PF_FLOAT32_R | PF_FLOAT32_RGB | PF_FLOAT32_RGBA |
+						PF_FLOAT16_GR | PF_FLOAT32_GR | PF_DEPTH | PF_SHORT_RGBA | PF_SHORT_GR | PF_SHORT_RGB |
+						PF_COUNT )					#REQUIRED
+	usage				(static | dynamic | writeOnly | staticWriteOnly | dynamicWriteOnly | dynamicWriteOnlyDiscardable |
+						autoMipmap | rendertarget | default) "default"
+					
+	priority			CDATA						#IMPLIED
+	active				(true | false) 			"true"
+	autoUpdated			(true | false) 			"true"
+>
+
+<!ELEMENT multiRenderTarget (renderTargetAttachment*)>
+<!ATTLIST multiRenderTarget
+	name			CDATA #REQUIRED
+>
+
+<!ELEMENT renderTargetAttachment (renderTexture)>
+<!ATTLIST renderTargetAttachment
+	attachmentPoint	CDATA #REQUIRED
+>
+
+
+<!ELEMENT viewports (viewport*)>
+<!ELEMENT viewport (colourBackground?, compositors?)>
+<!ATTLIST viewport
+	renderTargetName					CDATA			#REQUIRED
+	cameraName							CDATA			#REQUIRED
+	changeCameraAspectRatio				(true | false)	"true"
+	left								CDATA			"0"
+	top									CDATA			"0"
+	width								CDATA			"1"
+	height								CDATA			"1"
+	zOrder								CDATA			"0"
+	clearEveryFrame						(true | false)	"true"
+	clearBuffers						CDATA			"colour|depth"
+	materialSchemeName					CDATA			#IMPLIED
+	overlaysEnabled						(true | false)	"true"
+	skiesEnabled						(true | false)	"true"
+	shadowsEnabled						(true | false)	"true"
+	visibilityMask						CDATA			#IMPLIED
+	renderQueueInvocationSequenceName	CDATA			#IMPLIED
+>
+
+<!ELEMENT compositorInstances (compositorInstance*, HDRCompositorInstance*)>
+<!ELEMENT compositorInstance EMPTY>
+<!ATTLIST compositorInstance
+	compositorName		CDATA			#REQUIRED
+	position			CDATA			"-1"
+	enabled				(true | false) "false"
+>
+
+<!ELEMENT HDRCompositorInstance EMPTY>
+<!ATTLIST HRDCompositor
+	enabled				(true | false)	"false"
+
+	toneMapper			(none | linear | reinhards | modifiedReinhards | logaritmic | adaptLogaritmic | reinhardLocal | count) "none"
+	glareType			(none | blur)	"none"
+	glareStrength		CDATA			"1.0"
+	glarePasses			CDATA			"1"
+	starType			(none | plus | cross | plusCross) "none"
+	starStrength		CDATA			"1.0"
+	starPasses			CDATA			"1"
+	autoKeying			(true | false)	"false"
+	key					CDATA			"0.2"	
+	luminanceAdaptation	(true | false)	"false"
+	adaptationScale		CDATA			"1"
+	localE				CDATA			"0.05"
+	localPhi			CDATA			"8"
+>
+
+
+
+
+
+<!--
+  **************************************************************************************
+  **************************************************************************************
+  **************************************************************************************
+-->
+
+<!ELEMENT terrain EMPTY>
+<!ATTLIST terrain
+	dataFile CDATA #IMPLIED
+>
+
+<!ELEMENT nodes (node*, light*, camera*, position?, orientation?, scale?)>
+<!ATTLIST nodes
+	visible				(true | false) "true"
+	cascadeVisibility	(true | false) "true"
+>
+
+<!ELEMENT node (position?, orientation?, scale?, lookTarget?, trackTarget?, node*, entity*, light*, camera*, particleSystem*, billboardSet*, plane*, userDataReference?)>
+<!ATTLIST node
+	name				CDATA	#IMPLIED
+	id					ID		#IMPLIED
+	visible				(true | false) "true"
+	cascadeVisibility	(true | false) "true"
+	isTarget			(true | false) "false"
+>
+
+<!ELEMENT particleSystem (commonMovableObjectParams?, userDataReference?)>
+<!ATTLIST particleSystem
+	name	        CDATA	#IMPLIED
+	id		        ID		#IMPLIED
+	templateName	CDATA	#REQUIRED
+	materialName	CDATA	#IMPLIED
+>
+
+<!ELEMENT light (commonMovableObjectParams?, position?, direction?, colourDiffuse?, colourSpecular?, spotLightRange?, lightAttenuation?, userDataReference?)>
+<!ATTLIST light
+	name			CDATA	#IMPLIED
+	id				ID		#IMPLIED
+	type			(point | directional | spotLight | radPoint) "point"
+	powerScale		CDATA	"1.0"
+>
+
+<!ELEMENT camera (commonMovableObjectParams?, clipping?, position?, orientation?, lookTarget?, trackTarget?, userDataReference?)>
+<!ATTLIST camera
+	name					CDATA	#IMPLIED
+	id						ID		#IMPLIED
+	FOVy					CDATA	"45"
+	aspectRatio				CDATA	"1.3333333"
+	projectionType			(perspective | orthographic)	"perspective"
+	polygonMode				(points | wireframe | solid)	"solid"
+	useRenderingDistance	(yes | no)						"yes"
+	lodBiasFactor			CDATA	"1.0"
+>
+
+<!ELEMENT trackTarget (localDirectionVector?, offset?)>
+<!ATTLIST trackTarget
+	nodeName	CDATA	#REQUIRED
+>
+
+<!ELEMENT lookTarget (position?, localDirectionVector?)>
+<!ATTLIST lookTarget
+	nodeName	CDATA	#IMPLIED
+	relativeTo	(local | parent | world) #REQUIRED
+>
+
+<!ELEMENT lightAttenuation EMPTY>
+<!ATTLIST lightAttenuation
+	range		CDATA	#REQUIRED
+	constant	CDATA	#REQUIRED
+	linear		CDATA	#REQUIRED
+	quadratic	CDATA	#REQUIRED
+>
+
+<!ELEMENT spotLightRange EMPTY>
+<!ATTLIST spotLightRange
+	inner	CDATA	#REQUIRED
+	outer	CDATA	#REQUIRED
+	falloff CDATA	#REQUIRED
+>
+
+<!ELEMENT entity (commonMovableObjectParams?, animations*, animationStates*, meshLODBias?, materialLODBias?, userDataReference?)>
+<!ATTLIST entity
+	name									CDATA			#IMPLIED
+	id										ID				#IMPLIED
+	meshFile								CDATA			#REQUIRED
+	materialName							CDATA			#IMPLIED
+	displaySkeleton							(true|false)	"false"
+	polygonModeOverrideable					(true|false)	"false"
+	softwareAnimationRequests				CDATA			#IMPLIED
+	softwareAnimationRequestsNormalsAlso	CDATA			#IMPLIED
+	
+	vertexBufferUsage			(static | dynamic | writeOnly | staticWriteOnly | dynamicWriteOnly | discardable | dynamicWriteOnlyDiscardable)	"staticWriteOnly"
+	vertexBufferUseShadow		(true | false) "false"
+	indexBufferUsage			(static | dynamic | writeOnly | staticWriteOnly | dynamicWriteOnly | discardable | dynamicWriteOnlyDiscardable)	"staticWriteOnly"
+	indexBufferUseShadow		(true | false) "false"
+>
+
+<!ELEMENT meshLODBias EMPTY>
+<!ATTLIST meshLODBias
+	factor					CDATA	#REQUIRED
+	maxDetailIndex			CDATA	"0"
+	minDetailIndex			CDATA	"99"
+>
+
+<!ELEMENT materialLODBias EMPTY>
+<!ATTLIST materialLODBias
+	factor					CDATA	#REQUIRED
+	maxDetailIndex			CDATA	"0"
+	minDetailIndex			CDATA	"99"
+>
+
+
+<!ELEMENT commonMovableObjectParams EMPTY>
+<!ATTLIST commonMovableObjectParams
+	static					(true | false) "false"		
+	visible					(true | false) "true"	
+	castShadows				(true | false) "true"
+	renderingDistance		CDATA	"0"	
+	queryFlags				CDATA	#IMPLIED
+	visibilityFlags			CDATA	#IMPLIED
+>
+
+<!ELEMENT environment (fog?, skyBox?, skyDome?, skyPlane?, clipping?, colourAmbient?, colourBackground?, userDataReference?)>
+
+<!ELEMENT clipping EMPTY>
+<!ATTLIST clipping
+	nearPlaneDist		CDATA #REQUIRED
+	farPlaneDist		CDATA #REQUIRED
+>
+
+<!--<!ELEMENT fog (colourDiffuse?)>
+<!ATTLIST fog
+	expDensity	CDATA	"0.001"
+	linearStart CDATA	"0.0"
+	linearEnd	CDATA	"1.0"
+	mode		(none | exp | exp2 | linear) "none"
+>-->
+
+<!ELEMENT fog EMPTY>
+<!ATTLIST fog
+	mode		(none | exp | exp2 | linear) "none"	
+	colourR		CDATA	#REQUIRED
+	colourG		CDATA	#REQUIRED
+	colourB		CDATA	#REQUIRED
+	expDensity	CDATA	"0.001"
+	linearStart CDATA	"0.0"
+	linearEnd	CDATA	"1.0"
+>
+
+
+<!ELEMENT skyBox (orientation?)>
+<!ATTLIST skyBox
+	name			CDATA #REQUIRED
+	enabled			(true | false) "true"
+	materialName	CDATA #REQUIRED
+	distance		CDATA "5000"
+	drawFirst		(true | false)	"true"
+>
+
+<!ELEMENT skyDome (orientation?)>
+<!ATTLIST skyDome
+	name			CDATA #REQUIRED
+	enabled			(true | false) "true"	
+	materialName	CDATA #REQUIRED
+	curvature		CDATA "10"
+	tiling			CDATA "8"
+	distance		CDATA "4000"
+	drawFirst		(true | false) "true"
+	xsegments		CDATA "16"
+	ysegments		CDATA "16"
+	ysegments_keep	CDATA "-1"
+>
+
+<!ELEMENT skyPlane EMPTY>
+<!ATTLIST skyPlane
+	name			CDATA	#REQUIRED
+	enabled			(true | false) "true"	
+	planeX			CDATA	"0"
+	planeY			CDATA	"-1"
+	planeZ			CDATA	"0"
+	planeD			CDATA	"5000"
+	materialName	CDATA	#REQUIRED
+	scale			CDATA	"1000"
+	tiling			CDATA	"10"	
+	drawFirst		(true | false)		"true"	
+	bow				CDATA	"0" 
+	xsegments		CDATA	"1"
+	ysegments		CDATA	"1"
+>
+
+<!ELEMENT billboardSet (commonMovableObjectParams?, billboard*, commonDirection?, commonUpVector?, (textureCoords? | textureStacksAndSlices?))>
+<!ATTLIST billboardSet
+	name					CDATA				#IMPLIED
+	id						ID					#IMPLIED	
+	poolSize				CDATA				"20"
+	autoextend				(true | false)		"true"	
+	
+	materialName			CDATA				#REQUIRED
+	defaultWidth			CDATA				"10"
+	defaultHeight			CDATA				"10"
+	
+	billboardType			(point | orientedCommon | orientedSelf | perpendicularCommon | perpendicularSelf) "point"
+	billboardOrigin			(topLeft | topCenter | topRight | centerLeft | center | centerRight | bottomLeft | bottomCenter | bottomRight) "center"
+	billboardRotationType	(vertex | texcoord) "texcoord"
+	
+	sortingEnabled			(true | false)		"false"
+	cullIndividually		(true | false)		"false"	
+	accurateFacing			(true | false)		"false"
+	billboardsInWorldSpace	(true | false)		"false"
+	pointRenderingEnabled	(true | false)		"false"
+>
+
+<!ELEMENT billboard (position?, colourDiffuse?, textureCoords?)>
+<!ATTLIST billboard
+	id				ID		#IMPLIED
+	rotation		CDATA	#IMPLIED	
+	width			CDATA	#IMPLIED
+	height			CDATA	#IMPLIED
+	texcoordIndex	CDATA	#IMPLIED
+>
+
+<!ELEMENT commonDirection EMPTY>
+<!ATTLIST commonDirection
+	x		CDATA #REQUIRED
+	y		CDATA #REQUIRED
+	z		CDATA #REQUIRED
+>
+
+<!ELEMENT commonUpVector EMPTY>
+<!ATTLIST commonUpVector
+	x		CDATA #REQUIRED
+	y		CDATA #REQUIRED
+	z		CDATA #REQUIRED
+>
+
+<!ELEMENT textureCoords (floatRect+)>
+<!ELEMENT floatRect EMPTY>
+<!ATTLIST floatRect
+	left	CDATA #REQUIRED
+	top		CDATA #REQUIRED
+	right	CDATA #REQUIRED
+	bottom	CDATA #REQUIRED
+>
+
+<!ELEMENT textureStacksAndSlices EMPTY>
+<!ATTLIST textureStacksAndSlices 
+	stacks	CDATA #REQUIRED
+	slices	CDATA #REQUIRED
+>
+
+<!ELEMENT animationStates (animationState+)>
+<!ELEMENT animationState EMPTY>
+<!ATTLIST animationState
+	enabled			(true|false)	"false"
+	animationName	CDATA			#REQUIRED
+	timePosition	CDATA			"0"
+	length			CDATA			#IMPLIED
+	weight			CDATA			"1.0"
+	loop			(true|false)	"true"
+>
+
+<!ELEMENT animations (animation+)>
+<!ELEMENT animation (nodeAnimationTrack*, numericAnimationTrack*, vertexAnimationTrack*)>
+<!ATTLIST animation
+	name						CDATA				#REQUIRED
+	type						(node|numeric|mesh)	#REQUIRED
+	length						CDATA				#REQUIRED
+	interpolationMode			(linear|spline)		"linear"
+	rotationInterpolationMode	(linear|spherical)	"linear"
+>
+
+<!ELEMENT nodeAnimationTrack (transformKeyFrame*)>
+<!ATTLIST nodeAnimationTrack
+	handle					CDATA			#REQUIRED
+	associatedNodeName		CDATA			#REQUIRED
+	useShortestRotationPath	(true|false)	"true"
+>
+<!ELEMENT transformKeyFrame (translation?, orientation?, scale?)>
+<!ATTLIST transformKeyFrame
+	timePosition	CDATA	#REQUIRED
+>
+<!ELEMENT translation EMPTY>
+<!ATTLIST translation
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+
+<!ELEMENT vertexAnimationTrack (vertexMorphKeyFrame*|vertexPoseKeyFrame*)>
+<!ATTLIST vertexAnimationTrack
+	handle					CDATA				#REQUIRED
+	vertexAnimationType		(morph|pose)		#REQUIRED
+	targetMode				(software|hardware)	"software"
+>
+
+<!ELEMENT vertexMorphKeyFrame EMPTY>
+<!ATTLIST vertexMorphKeyFrame
+	timePosition	CDATA	#REQUIRED	
+>
+
+<!ELEMENT vertexPoseKeyFrame (poseReference+)>
+<!ATTLIST vertexPoseKeyFrame
+	timePosition	CDATA	#REQUIRED	
+>
+<!ELEMENT poseReference EMPTY>
+<!ATTLIST poseReference 
+	poseIndex				CDATA			#REQUIRED
+	influence				CDATA			#REQUIRED
+>
+
+
+<!ELEMENT plane (upVector?, vertexBuffer?, indexBuffer?)>
+<!ATTLIST plane
+	name			CDATA	#REQUIRED
+	id				ID		#IMPLIED
+	normalX			CDATA	#REQUIRED
+	normalY			CDATA	#REQUIRED
+	normalZ			CDATA	#REQUIRED
+	distance		CDATA	#REQUIRED
+	width			CDATA	#REQUIRED
+	height			CDATA	#REQUIRED
+	xSegments		CDATA	"1"
+	ySegments		CDATA	"1"
+	normals			(true | false)		"true"	
+	numTexCoordSets	CDATA	"1"
+	uTile			CDATA	"1"
+	vTile			CDATA	"1"
+>
+
+<!ELEMENT vertexBuffer EMPTY>
+<!ATTLIST vertexBuffer
+	usage		(static | dynamic | writeOnly | staticWriteOnly | dynamicWriteOnly | dynamicWriteOnlyDiscardable)	"staticWriteOnly"
+	useShadow	(true | false)	"false"
+>
+
+<!ELEMENT indexBuffer EMPTY>
+<!ATTLIST indexBuffer
+	usage		(static | dynamic | writeOnly | staticWriteOnly | dynamicWriteOnly | dynamicWriteOnlyDiscardable)	"staticWriteOnly"
+	useShadow	(true | false)	"false"
+>
+
+<!ELEMENT externals (item*)>
+
+<!ELEMENT item (file)>
+<!ATTLIST item
+	type CDATA #REQUIRED
+>
+
+<!ELEMENT file EMPTY>
+<!ATTLIST file
+	name CDATA #REQUIRED
+>
+
+<!ELEMENT position EMPTY>
+<!ATTLIST position
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+
+<!ELEMENT orientation (quaternion | axisXYZ | angle_axis | direction) >
+
+<!ELEMENT quaternion EMPTY>
+<!ATTLIST quaternion
+	x		CDATA #REQUIRED
+	y		CDATA #REQUIRED
+	z		CDATA #REQUIRED
+	w		CDATA #REQUIRED
+>
+<!ELEMENT axisXYZ EMPTY>
+<!ATTLIST axisXYZ
+	xAxisX	CDATA #REQUIRED
+	xAxisY	CDATA #REQUIRED
+	xAxisZ	CDATA #REQUIRED
+	yAxisX	CDATA #REQUIRED
+	yAxisY	CDATA #REQUIRED
+	yAxisZ	CDATA #REQUIRED
+	zAxisX	CDATA #REQUIRED
+	zAxisY	CDATA #REQUIRED
+	zAxisZ	CDATA #REQUIRED
+>
+
+<!ELEMENT angle_axis EMPTY>
+<!ATTLIST angle_axis
+	angle		CDATA				#REQUIRED
+	angleUnit	(degree|radian)		"degree"
+	x			CDATA 				#REQUIRED
+	y			CDATA 				#REQUIRED
+	z			CDATA 				#REQUIRED
+>
+
+<!ELEMENT direction EMPTY>
+<!ATTLIST direction
+	x			CDATA #REQUIRED
+	y			CDATA #REQUIRED
+	z			CDATA #REQUIRED
+	relativeTo	(local | parent | world) "local"
+	localDirX	CDATA "0"
+	localDirY	CDATA "0"
+	localDirZ	CDATA "-1"
+>
+
+
+<!ELEMENT normal EMPTY>
+<!ATTLIST normal
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+
+<!ELEMENT upVector EMPTY>
+<!ATTLIST upVector
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+
+<!ELEMENT offset EMPTY>
+<!ATTLIST offset
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+
+<!ELEMENT localDirectionVector EMPTY>
+<!ATTLIST localDirectionVector
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+
+<!ELEMENT scale EMPTY>
+<!ATTLIST scale
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED
+	z CDATA #REQUIRED
+>
+
+<!ELEMENT colourDiffuse EMPTY>
+<!ATTLIST colourDiffuse
+	r CDATA #REQUIRED
+	g CDATA #REQUIRED
+	b CDATA #REQUIRED
+	a CDATA #IMPLIED
+>
+
+<!ELEMENT colourSpecular EMPTY>
+<!ATTLIST colourSpecular
+	r CDATA #REQUIRED
+	g CDATA #REQUIRED
+	b CDATA #REQUIRED
+>
+
+<!ELEMENT colourAmbient EMPTY>
+<!ATTLIST colourAmbient
+	r CDATA #REQUIRED
+	g CDATA #REQUIRED
+	b CDATA #REQUIRED
+>
+
+<!ELEMENT colourBackground EMPTY>
+<!ATTLIST colourBackground
+	r CDATA #REQUIRED
+	g CDATA #REQUIRED
+	b CDATA #REQUIRED
+>
+
+<!ELEMENT userDataReference EMPTY>
+<!ATTLIST userDataReference
+	id CDATA #REQUIRED
+>
+
+<!ELEMENT octree (octNode)>
+<!ATTLIST octree
+	binFile CDATA #REQUIRED
+>
+
+<!ELEMENT octNode (octNode*, octMesh*)>
+<!ATTLIST octNode
+	px		CDATA #REQUIRED
+	py		CDATA #REQUIRED
+	pz		CDATA #REQUIRED
+	width	CDATA #REQUIRED
+	height	CDATA #REQUIRED
+	depth	CDATA #REQUIRED
+>
+
+<!ELEMENT octMesh (octGeometry, octMaterial)>
+
+<!ELEMENT octGeometry EMPTY>
+<!ATTLIST octGeometry
+	binaryDataOffset	CDATA #REQUIRED
+	vertTotal			CDATA #REQUIRED
+	triTotal			CDATA #REQUIRED
+	normalTotal			CDATA #IMPLIED
+	colorTotal			CDATA #IMPLIED
+	texSets				CDATA #IMPLIED
+	texTotal			CDATA #IMPLIED
+>
+
+<!ELEMENT octMaterial EMPTY>
+<!ATTLIST octMaterial
+	name	CDATA #REQUIRED
+	texture CDATA #IMPLIED
+>

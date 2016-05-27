@@ -1,0 +1,78 @@
+material MatD3D02
+{
+	technique
+	{
+		pass
+		{
+			diffuse 0.8 0.784314 0.984314 1
+			specular 0 0 0 1 1
+		}
+	}
+}
+
+material Material#25
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 0.588 0.588 0.588 1
+			specular 0 0 0 1 10
+
+			texture_unit
+			{
+				texture Car.png
+			}
+		}
+	}
+}
+
+material JitterSample/QuadDrawer
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.588 0.588 0.588 1
+			diffuse 0.588 0.588 0.588 1
+			specular 0 0 0 1 10
+			cull_hardware none
+
+			texture_unit
+			{
+				texture checker.png
+			}
+		}
+	}
+}
+
+material JitterSample/Logo
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			depth_check off
+
+			texture_unit
+			{
+				texture JitterLogo.png
+			}
+		}
+	}
+}
+
+material JitterSample/Geometries
+{
+	technique
+	{
+		pass
+		{
+			diffuse 0.8 0.784314 0.984314 1
+			specular 0 0 0 1 1
+		}
+	}
+}

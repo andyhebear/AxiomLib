@@ -1,0 +1,60 @@
+<?xml version="1.0" standalone="yes"?>
+<scene formatVersion="2.0">
+	<environment>
+		<skyBox material="Skybox/Space" />
+		<colourAmbient r="0.2980392" g="0.2980392" b="0.2980392" />
+	</environment>
+	<nodes>
+		<node name="Node">
+			<position x="-183.982" y="0" z="0" />
+			<node name="OgreHead1">
+				<position x="183.982" y="0" z="218.551" />
+				<node name="OgreHead2">
+					<position x="-146.245" y="0" z="-218.551" />
+					<entity meshFile="ogrehead.mesh" name="HeadMesh2" castShadows="True" material="Skybox/Space" />
+					<light name="PointLight04" visible="True" castShadows="True">
+						<colourDiffuse r="0.4745098" g="0.3098039" b="0.2431373" />
+						<colourSpecular r="0.4745098" g="0.3098039" b="0.2431373" />
+						<lightAttenuation range="100000" constant="1" linear="0" quadratic="0" />
+						<lightRange falloff="1" inner="0.5235988" outer="0.6981318" />
+					</light>
+				</node>
+				<entity meshFile="ogrehead.mesh" name="HeadMesh1" castShadows="True" />
+			</node>
+		</node>
+		<node name="OgreHead3">
+			<position x="127" y="6.5" z="0" />
+			<entity meshFile="ogrehead.mesh" name="HeadMesh3" castShadows="True" />
+			<light name="PointLight01" visible="True" castShadows="True">
+				<colourDiffuse r="0.4745098" g="0.3098039" b="0.2431373" />
+				<colourSpecular r="0.4745098" g="0.3098039" b="0.2431373" />
+				<lightAttenuation range="100000" constant="1" linear="0" quadratic="0" />
+				<lightRange falloff="1" inner="0.5235988" outer="0.6981318" />
+			</light>
+		</node>
+		<node name="OgreHead5">
+			<position x="-6.44458" y="170.48" z="-207.49" />
+			<entity meshFile="ogrehead.mesh" name="HeadMesh5" castShadows="True" />
+			<light name="PointLight03" visible="True" castShadows="True">
+				<colourDiffuse r="0.4745098" g="0.3098039" b="0.2431373" />
+				<colourSpecular r="0.4745098" g="0.3098039" b="0.2431373" />
+				<lightAttenuation range="100000" constant="1" linear="0" quadratic="0" />
+				<lightRange falloff="1" inner="0.5235988" outer="0.6981318" />
+			</light>
+		</node>
+		<node name="OgreHead4">
+			<entity meshFile="ogrehead.mesh" name="HeadMesh4" castShadows="True" />
+			<light name="PointLight02" visible="True" castShadows="True">
+				<colourDiffuse r="0.4745098" g="0.3098039" b="0.2431373" />
+				<colourSpecular r="0.4745098" g="0.3098039" b="0.2431373" />
+				<lightAttenuation range="100000" constant="1" linear="0" quadratic="0" />
+				<lightRange falloff="1" inner="0.5235988" outer="0.6981318" />
+			</light>
+		</node>
+		<light name="DirLight01_1" visible="True" castShadows="True">
+			<colourSpecular r="1" g="1" b="1" />
+			<lightAttenuation range="100000" constant="1" linear="0" quadratic="0" />
+			<lightRange falloff="1" inner="0.5235988" outer="0.6981318" />
+		</light>
+	</nodes>
+</scene>

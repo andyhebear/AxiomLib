@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Axiom.SoundSystems.Decoders.DecoderManager">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <Members>
+      <Method Name="DecoderManager" Hidden="true" />
+      <Field Name="decoderMap" Hidden="true" />
+      <Method Name="LogSupportedFormats" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAQAgAAAAIAAAAAACAAAAAAAAAAAAAACAAAQAAAAAA=</HashCode>
+      <FileName>DecoderManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Axiom.SoundSystems.Decoders.DecoderOGG" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>DecoderOGG.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Axiom.SoundSystems.Decoders.DecoderWAV" BaseTypeListCollapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>DecoderWAV.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Axiom.SoundSystems.DecoderManagerException" Collapsed="true">
+    <Position X="0.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DecoderManagerException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Axiom.SoundSystems.Decoders.WaveStream">
+    <Position X="3.75" Y="4.25" Width="1.75" />
+    <Members>
+      <Field Name="bits" Hidden="true" />
+      <Field Name="data" Hidden="true" />
+      <Field Name="format" Hidden="true" />
+      <Field Name="frequency" Hidden="true" />
+      <Field Name="channels" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAEAAAAACAAAAIgAABCAAAAQAAAAEAA=</HashCode>
+      <FileName>WaveStream.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Format" />
+    </ShowAsAssociation>
+  </Struct>
+  <Interface Name="Axiom.SoundSystems.Decoders.IDecoder">
+    <Position X="3.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>IDecoder.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Axiom.SoundSystems.Decoders.WaveFormat">
+    <Position X="3.75" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

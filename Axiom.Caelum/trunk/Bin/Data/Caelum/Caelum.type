@@ -1,0 +1,50 @@
+type Caelum
+{
+	class = CaelumManager
+	mFarDistance = 140
+	allowEditorCreate = True
+	ComponentsToCreate = Skydome, Sun, Starfield, Clouds, Moon, Fog
+	mCaelumItems
+	{
+		item
+		{
+			mMeshName = Caelum\Clouds\LayeredClouds.mesh
+			mType = Clouds
+			mScale = 190 190 190
+			mRotation = 90 0 0
+			mTranslation = 0 0 0
+		}
+		item
+		{
+			mMeshName = Caelum\Skydome\Skydome.mesh
+			mType = Skydome
+			mScale = 150 150 150
+			mRotation = 90 0 0
+			mTranslation = 0 0 0
+		}
+		item
+		{
+			mMeshName = Caelum\Starfield\Starfield.mesh
+			mType = Starfield
+			mScale = 150 150 150
+			mRotation = 0 0 0
+			mTranslation = 0 0 0
+		}
+		item
+		{
+			mMatName = CaelumSpriteSun
+			mType = Sun
+			mScale = 16 16 16
+			mRotation = 0 0 0
+			mTranslation = 0 0 0
+		}
+		item
+		{
+			mMatName = CaelumPhaseMoon
+			mType = Moon
+			mScale = 15 15 15
+			mRotation = 0 0 0
+			mTranslation = 0 0 0
+		}
+	}
+}

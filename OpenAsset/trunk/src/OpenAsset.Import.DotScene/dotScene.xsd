@@ -1,0 +1,1974 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="scene">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="sceneManagerOption"/>
+        <xs:element minOccurs="0" ref="shadowSettings"/>
+        <xs:element minOccurs="0" ref="resourceGroup"/>
+        <xs:element minOccurs="0" ref="renderTargets"/>
+        <xs:element minOccurs="0" ref="externals"/>
+        <xs:element minOccurs="0" ref="environment"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="light"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="camera"/>
+        <xs:element minOccurs="0" ref="nodes"/>
+        <xs:element minOccurs="0" ref="viewports"/>
+        <xs:element minOccurs="0" ref="animations"/>
+        <xs:element minOccurs="0" ref="animationStates"/>
+        <xs:element minOccurs="0" ref="terrain"/>
+        <xs:element minOccurs="0" ref="octree"/>
+        <xs:element minOccurs="0" ref="userDataReference"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.scene"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.scene">
+    <xs:attribute name="formatVersion" use="required"/>
+    <xs:attribute name="id" type="xs:ID"/>
+    <xs:attribute name="sceneManagerType"/>
+    <xs:attribute name="sceneManagerName"/>
+    <xs:attribute name="minOgreVersion"/>
+    <xs:attribute name="author"/>
+    <xs:attribute name="showBoundingBoxes" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="sceneManagerOption">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.sceneManagerOption"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.sceneManagerOption">
+    <xs:attribute name="name" use="required"/>
+    <xs:attribute name="type" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="bool"/>
+          <xs:enumeration value="real"/>
+          <xs:enumeration value="int"/>
+          <xs:enumeration value="unsigned_int"/>
+          <xs:enumeration value="short"/>
+          <xs:enumeration value="unsigned_short"/>
+          <xs:enumeration value="long"/>
+          <xs:enumeration value="unsigned_long"/>
+          <xs:enumeration value="size_t"/>
+          <xs:enumeration value="string"/>
+          <xs:enumeration value="vector3"/>
+          <xs:enumeration value="matrix3"/>
+          <xs:enumeration value="matrix4"/>
+          <xs:enumeration value="quaternion"/>
+          <xs:enumeration value="colourvalue"/>
+          <xs:enumeration value="movableObject"/>
+          <xs:enumeration value="camera"/>
+          <xs:enumeration value="node"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="value" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="shadowSettings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="colourDiffuse"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="shadowTextureConfig"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.shadowSettings"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.shadowSettings">
+    <xs:attribute name="shadowTechnique" default="none">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="none"/>
+          <xs:enumeration value="stencilModulative"/>
+          <xs:enumeration value="stencilAdditive"/>
+          <xs:enumeration value="textureModulative"/>
+          <xs:enumeration value="textureAdditive"/>
+          <xs:enumeration value="textureModulativeIntegrated"/>
+          <xs:enumeration value="textureAdditiveIntegrated"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="showDebugShadows" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="shadowFarDistance"/>
+    <xs:attribute name="shadowDirectionalLightExtrusionDistance" default="10000"/>
+    <xs:attribute name="shadowIndexBufferSize" default="51200"/>
+    <xs:attribute name="shadowUseInfiniteFarPlane" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="shadowTextureCount"/>
+    <xs:attribute name="shadowTextureSize"/>
+    <xs:attribute name="shadowTexturePixelFormat">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="PF_UNKNOWN"/>
+          <xs:enumeration value="PF_L8"/>
+          <xs:enumeration value="PF_BYTE_L"/>
+          <xs:enumeration value="PF_L16"/>
+          <xs:enumeration value="PF_SHORT_L"/>
+          <xs:enumeration value="PF_A8"/>
+          <xs:enumeration value="PF_BYTE_A"/>
+          <xs:enumeration value="PF_A4L4"/>
+          <xs:enumeration value="PF_BYTE_LA"/>
+          <xs:enumeration value="PF_R5G6B5"/>
+          <xs:enumeration value="PF_B5G6R5"/>
+          <xs:enumeration value="PF_R3G3B2"/>
+          <xs:enumeration value="PF_A4R4G4B4"/>
+          <xs:enumeration value="PF_A1R5G5B5"/>
+          <xs:enumeration value="PF_R8G8B8"/>
+          <xs:enumeration value="PF_B8G8R8"/>
+          <xs:enumeration value="PF_A8R8G8B8"/>
+          <xs:enumeration value="PF_A8B8G8R8"/>
+          <xs:enumeration value="PF_B8G8R8A8"/>
+          <xs:enumeration value="PF_R8G8B8A8"/>
+          <xs:enumeration value="PF_X8R8G8B8"/>
+          <xs:enumeration value="PF_X8B8G8R8"/>
+          <xs:enumeration value="PF_BYTE_RGB"/>
+          <xs:enumeration value="PF_BYTE_BGR"/>
+          <xs:enumeration value="PF_BYTE_BGRA"/>
+          <xs:enumeration value="PF_BYTE_RGBA"/>
+          <xs:enumeration value="PF_A2R10G10B10"/>
+          <xs:enumeration value="PF_A2B10G10R10"/>
+          <xs:enumeration value="PF_DXT1"/>
+          <xs:enumeration value="PF_DXT2"/>
+          <xs:enumeration value="PF_DXT3"/>
+          <xs:enumeration value="PF_DXT4"/>
+          <xs:enumeration value="PF_DXT5"/>
+          <xs:enumeration value="PF_FLOAT16_R"/>
+          <xs:enumeration value="PF_FLOAT16_RGB"/>
+          <xs:enumeration value="PF_FLOAT16_RGBA"/>
+          <xs:enumeration value="PF_FLOAT32_R"/>
+          <xs:enumeration value="PF_FLOAT32_RGB"/>
+          <xs:enumeration value="PF_FLOAT32_RGBA"/>
+          <xs:enumeration value="PF_FLOAT16_GR"/>
+          <xs:enumeration value="PF_FLOAT32_GR"/>
+          <xs:enumeration value="PF_DEPTH"/>
+          <xs:enumeration value="PF_SHORT_RGBA"/>
+          <xs:enumeration value="PF_SHORT_GR"/>
+          <xs:enumeration value="PF_SHORT_RGB"/>
+          <xs:enumeration value="PF_COUNT"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="shadowDirLightTextureOffset" default="0.6"/>
+    <xs:attribute name="shadowTextureFadeStart" default="0.7"/>
+    <xs:attribute name="shadowTextureFadeEnd" default="0.9"/>
+    <xs:attribute name="shadowTextureSelfShadow">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="shadowTextureCasterMaterial"/>
+    <xs:attribute name="shadowTextureReceiverMaterial"/>
+    <xs:attribute name="shadowCasterRenderBackFaces" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="shadowTextureConfig">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.shadowTextureConfig"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.shadowTextureConfig">
+    <xs:attribute name="shadowIndex" use="required"/>
+    <xs:attribute name="width" use="required"/>
+    <xs:attribute name="height" use="required"/>
+    <xs:attribute name="pixelFormat" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="PF_UNKNOWN"/>
+          <xs:enumeration value="PF_L8"/>
+          <xs:enumeration value="PF_BYTE_L"/>
+          <xs:enumeration value="PF_L16"/>
+          <xs:enumeration value="PF_SHORT_L"/>
+          <xs:enumeration value="PF_A8"/>
+          <xs:enumeration value="PF_BYTE_A"/>
+          <xs:enumeration value="PF_A4L4"/>
+          <xs:enumeration value="PF_BYTE_LA"/>
+          <xs:enumeration value="PF_R5G6B5"/>
+          <xs:enumeration value="PF_B5G6R5"/>
+          <xs:enumeration value="PF_R3G3B2"/>
+          <xs:enumeration value="PF_A4R4G4B4"/>
+          <xs:enumeration value="PF_A1R5G5B5"/>
+          <xs:enumeration value="PF_R8G8B8"/>
+          <xs:enumeration value="PF_B8G8R8"/>
+          <xs:enumeration value="PF_A8R8G8B8"/>
+          <xs:enumeration value="PF_A8B8G8R8"/>
+          <xs:enumeration value="PF_B8G8R8A8"/>
+          <xs:enumeration value="PF_R8G8B8A8"/>
+          <xs:enumeration value="PF_X8R8G8B8"/>
+          <xs:enumeration value="PF_X8B8G8R8"/>
+          <xs:enumeration value="PF_BYTE_RGB"/>
+          <xs:enumeration value="PF_BYTE_BGR"/>
+          <xs:enumeration value="PF_BYTE_BGRA"/>
+          <xs:enumeration value="PF_BYTE_RGBA"/>
+          <xs:enumeration value="PF_A2R10G10B10"/>
+          <xs:enumeration value="PF_A2B10G10R10"/>
+          <xs:enumeration value="PF_DXT1"/>
+          <xs:enumeration value="PF_DXT2"/>
+          <xs:enumeration value="PF_DXT3"/>
+          <xs:enumeration value="PF_DXT4"/>
+          <xs:enumeration value="PF_DXT5"/>
+          <xs:enumeration value="PF_FLOAT16_R"/>
+          <xs:enumeration value="PF_FLOAT16_RGB"/>
+          <xs:enumeration value="PF_FLOAT16_RGBA"/>
+          <xs:enumeration value="PF_FLOAT32_R"/>
+          <xs:enumeration value="PF_FLOAT32_RGB"/>
+          <xs:enumeration value="PF_FLOAT32_RGBA"/>
+          <xs:enumeration value="PF_FLOAT16_GR"/>
+          <xs:enumeration value="PF_FLOAT32_GR"/>
+          <xs:enumeration value="PF_DEPTH"/>
+          <xs:enumeration value="PF_SHORT_RGBA"/>
+          <xs:enumeration value="PF_SHORT_GR"/>
+          <xs:enumeration value="PF_SHORT_RGB"/>
+          <xs:enumeration value="PF_COUNT"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="resourceGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="resourceLocation"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="resourceDeclaration"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.resourceGroup"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.resourceGroup">
+    <xs:attribute name="name" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="resourceLocation">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.resourceLocation"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.resourceLocation">
+    <xs:attribute name="name" use="required"/>
+    <xs:attribute name="type" use="required"/>
+    <xs:attribute name="recursive" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="relativeTo" default="dotSceneFileLocation">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="dotSceneFileLocation"/>
+          <xs:enumeration value="exeFileLocation"/>
+          <xs:enumeration value="currentWorkingDir"/>
+          <xs:enumeration value="absolute"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="resourceDeclaration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="NameValuePairList"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.resourceDeclaration"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.resourceDeclaration">
+    <xs:attribute name="name" use="required"/>
+    <xs:attribute name="resourceType" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="NameValuePairList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="NameValuePair"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NameValuePair">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.NameValuePair"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.NameValuePair">
+    <xs:attribute name="name" use="required"/>
+    <xs:attribute name="value" use="required"/>
+  </xs:attributeGroup>
+  <!--
+    **************************************************************************************
+    **************************************************************************************
+    **************************************************************************************
+  -->
+  <xs:element name="renderTargets">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="renderWindow"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="renderTexture"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="multiRenderTarget"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="renderWindow">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.renderWindow"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.renderWindow">
+    <xs:attribute name="name" use="required"/>
+    <xs:attribute name="width" use="required"/>
+    <xs:attribute name="height" use="required"/>
+    <xs:attribute name="fullscreen" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="priority"/>
+    <xs:attribute name="active" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="autoUpdated" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="primary" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="visible" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="title"/>
+    <xs:attribute name="colourDepth"/>
+    <xs:attribute name="left"/>
+    <xs:attribute name="top"/>
+    <xs:attribute name="depthBuffer" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="FSAA" default="0"/>
+    <xs:attribute name="displayFrequency"/>
+    <xs:attribute name="vsync" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="border" default="resize">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="none"/>
+          <xs:enumeration value="fixed"/>
+          <xs:enumeration value="resize"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="outerDimensions" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="renderTexture">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="NameValuePairList"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.renderTexture"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.renderTexture">
+    <xs:attribute name="name" use="required"/>
+    <xs:attribute name="textureType" default="2d">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="1d"/>
+          <xs:enumeration value="2d"/>
+          <xs:enumeration value="3d"/>
+          <xs:enumeration value="cubeMap"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="width" use="required"/>
+    <xs:attribute name="height" use="required"/>
+    <xs:attribute name="depth" use="required"/>
+    <xs:attribute name="numberOfMipmaps"/>
+    <xs:attribute name="pixelFormat" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="PF_UNKNOWN"/>
+          <xs:enumeration value="PF_L8"/>
+          <xs:enumeration value="PF_BYTE_L"/>
+          <xs:enumeration value="PF_L16"/>
+          <xs:enumeration value="PF_SHORT_L"/>
+          <xs:enumeration value="PF_A8"/>
+          <xs:enumeration value="PF_BYTE_A"/>
+          <xs:enumeration value="PF_A4L4"/>
+          <xs:enumeration value="PF_BYTE_LA"/>
+          <xs:enumeration value="PF_R5G6B5"/>
+          <xs:enumeration value="PF_B5G6R5"/>
+          <xs:enumeration value="PF_R3G3B2"/>
+          <xs:enumeration value="PF_A4R4G4B4"/>
+          <xs:enumeration value="PF_A1R5G5B5"/>
+          <xs:enumeration value="PF_R8G8B8"/>
+          <xs:enumeration value="PF_B8G8R8"/>
+          <xs:enumeration value="PF_A8R8G8B8"/>
+          <xs:enumeration value="PF_A8B8G8R8"/>
+          <xs:enumeration value="PF_B8G8R8A8"/>
+          <xs:enumeration value="PF_R8G8B8A8"/>
+          <xs:enumeration value="PF_X8R8G8B8"/>
+          <xs:enumeration value="PF_X8B8G8R8"/>
+          <xs:enumeration value="PF_BYTE_RGB"/>
+          <xs:enumeration value="PF_BYTE_BGR"/>
+          <xs:enumeration value="PF_BYTE_BGRA"/>
+          <xs:enumeration value="PF_BYTE_RGBA"/>
+          <xs:enumeration value="PF_A2R10G10B10"/>
+          <xs:enumeration value="PF_A2B10G10R10"/>
+          <xs:enumeration value="PF_DXT1"/>
+          <xs:enumeration value="PF_DXT2"/>
+          <xs:enumeration value="PF_DXT3"/>
+          <xs:enumeration value="PF_DXT4"/>
+          <xs:enumeration value="PF_DXT5"/>
+          <xs:enumeration value="PF_FLOAT16_R"/>
+          <xs:enumeration value="PF_FLOAT16_RGB"/>
+          <xs:enumeration value="PF_FLOAT16_RGBA"/>
+          <xs:enumeration value="PF_FLOAT32_R"/>
+          <xs:enumeration value="PF_FLOAT32_RGB"/>
+          <xs:enumeration value="PF_FLOAT32_RGBA"/>
+          <xs:enumeration value="PF_FLOAT16_GR"/>
+          <xs:enumeration value="PF_FLOAT32_GR"/>
+          <xs:enumeration value="PF_DEPTH"/>
+          <xs:enumeration value="PF_SHORT_RGBA"/>
+          <xs:enumeration value="PF_SHORT_GR"/>
+          <xs:enumeration value="PF_SHORT_RGB"/>
+          <xs:enumeration value="PF_COUNT"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="usage" default="default">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="static"/>
+          <xs:enumeration value="dynamic"/>
+          <xs:enumeration value="writeOnly"/>
+          <xs:enumeration value="staticWriteOnly"/>
+          <xs:enumeration value="dynamicWriteOnly"/>
+          <xs:enumeration value="dynamicWriteOnlyDiscardable"/>
+          <xs:enumeration value="autoMipmap"/>
+          <xs:enumeration value="rendertarget"/>
+          <xs:enumeration value="default"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="priority"/>
+    <xs:attribute name="active" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="autoUpdated" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="multiRenderTarget">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="renderTargetAttachment"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.multiRenderTarget"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.multiRenderTarget">
+    <xs:attribute name="name" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="renderTargetAttachment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="renderTexture"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.renderTargetAttachment"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.renderTargetAttachment">
+    <xs:attribute name="attachmentPoint" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="viewports">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="viewport"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="viewport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="colourBackground"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.viewport"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.viewport">
+    <xs:attribute name="renderTargetName" use="required"/>
+    <xs:attribute name="cameraName" use="required"/>
+    <xs:attribute name="changeCameraAspectRatio" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="left" default="0"/>
+    <xs:attribute name="top" default="0"/>
+    <xs:attribute name="width" default="1"/>
+    <xs:attribute name="height" default="1"/>
+    <xs:attribute name="zOrder" default="0"/>
+    <xs:attribute name="clearEveryFrame" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="clearBuffers" default="colour|depth"/>
+    <xs:attribute name="materialSchemeName"/>
+    <xs:attribute name="overlaysEnabled" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="skiesEnabled" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="shadowsEnabled" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="visibilityMask"/>
+    <xs:attribute name="renderQueueInvocationSequenceName"/>
+  </xs:attributeGroup>
+  <xs:element name="compositorInstances">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="compositorInstance"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="HDRCompositorInstance"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="compositorInstance">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.compositorInstance"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.compositorInstance">
+    <xs:attribute name="compositorName" use="required"/>
+    <xs:attribute name="position" default="-1"/>
+    <xs:attribute name="enabled" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="HDRCompositorInstance">
+    <xs:complexType/>
+  </xs:element>
+  <xs:attributeGroup name="attlist.HRDCompositor">
+    <xs:attribute name="enabled" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="toneMapper" default="none">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="none"/>
+          <xs:enumeration value="linear"/>
+          <xs:enumeration value="reinhards"/>
+          <xs:enumeration value="modifiedReinhards"/>
+          <xs:enumeration value="logaritmic"/>
+          <xs:enumeration value="adaptLogaritmic"/>
+          <xs:enumeration value="reinhardLocal"/>
+          <xs:enumeration value="count"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="glareType" default="none">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="none"/>
+          <xs:enumeration value="blur"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="glareStrength" default="1.0"/>
+    <xs:attribute name="glarePasses" default="1"/>
+    <xs:attribute name="starType" default="none">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="none"/>
+          <xs:enumeration value="plus"/>
+          <xs:enumeration value="cross"/>
+          <xs:enumeration value="plusCross"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="starStrength" default="1.0"/>
+    <xs:attribute name="starPasses" default="1"/>
+    <xs:attribute name="autoKeying" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="key" default="0.2"/>
+    <xs:attribute name="luminanceAdaptation" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="adaptationScale" default="1"/>
+    <xs:attribute name="localE" default="0.05"/>
+    <xs:attribute name="localPhi" default="8"/>
+  </xs:attributeGroup>
+  <!--
+    **************************************************************************************
+    **************************************************************************************
+    **************************************************************************************
+  -->
+  <xs:element name="terrain">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.terrain"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.terrain">
+    <xs:attribute name="dataFile"/>
+  </xs:attributeGroup>
+  <xs:element name="nodes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="node"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="light"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="camera"/>
+        <xs:element minOccurs="0" ref="position"/>
+        <xs:element minOccurs="0" ref="orientation"/>
+        <xs:element minOccurs="0" ref="scale"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.nodes"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.nodes">
+    <xs:attribute name="visible" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="cascadeVisibility" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="node">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="position"/>
+        <xs:element minOccurs="0" ref="orientation"/>
+        <xs:element minOccurs="0" ref="scale"/>
+        <xs:element minOccurs="0" ref="lookTarget"/>
+        <xs:element minOccurs="0" ref="trackTarget"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="node"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="entity"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="light"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="camera"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="particleSystem"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="billboardSet"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="plane"/>
+        <xs:element minOccurs="0" ref="userDataReference"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.node"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.node">
+    <xs:attribute name="name"/>
+    <xs:attribute name="id" type="xs:ID"/>
+    <xs:attribute name="visible" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="cascadeVisibility" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="isTarget" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="particleSystem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="commonMovableObjectParams"/>
+        <xs:element minOccurs="0" ref="userDataReference"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.particleSystem"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.particleSystem">
+    <xs:attribute name="name"/>
+    <xs:attribute name="id" type="xs:ID"/>
+    <xs:attribute name="templateName" use="required"/>
+    <xs:attribute name="materialName"/>
+  </xs:attributeGroup>
+  <xs:element name="light">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="commonMovableObjectParams"/>
+        <xs:element minOccurs="0" ref="position"/>
+        <xs:element minOccurs="0" ref="direction"/>
+        <xs:element minOccurs="0" ref="colourDiffuse"/>
+        <xs:element minOccurs="0" ref="colourSpecular"/>
+        <xs:element minOccurs="0" ref="spotLightRange"/>
+        <xs:element minOccurs="0" ref="lightAttenuation"/>
+        <xs:element minOccurs="0" ref="userDataReference"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.light"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.light">
+    <xs:attribute name="name"/>
+    <xs:attribute name="id" type="xs:ID"/>
+    <xs:attribute name="type" default="point">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="point"/>
+          <xs:enumeration value="directional"/>
+          <xs:enumeration value="spotLight"/>
+          <xs:enumeration value="radPoint"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="powerScale" default="1.0"/>
+  </xs:attributeGroup>
+  <xs:element name="camera">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="commonMovableObjectParams"/>
+        <xs:element minOccurs="0" ref="clipping"/>
+        <xs:element minOccurs="0" ref="position"/>
+        <xs:element minOccurs="0" ref="orientation"/>
+        <xs:element minOccurs="0" ref="lookTarget"/>
+        <xs:element minOccurs="0" ref="trackTarget"/>
+        <xs:element minOccurs="0" ref="userDataReference"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.camera"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.camera">
+    <xs:attribute name="name"/>
+    <xs:attribute name="id" type="xs:ID"/>
+    <xs:attribute name="FOVy" default="45"/>
+    <xs:attribute name="aspectRatio" default="1.3333333"/>
+    <xs:attribute name="projectionType" default="perspective">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="perspective"/>
+          <xs:enumeration value="orthographic"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="polygonMode" default="solid">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="points"/>
+          <xs:enumeration value="wireframe"/>
+          <xs:enumeration value="solid"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="useRenderingDistance" default="yes">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="yes"/>
+          <xs:enumeration value="no"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="lodBiasFactor" default="1.0"/>
+  </xs:attributeGroup>
+  <xs:element name="trackTarget">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="localDirectionVector"/>
+        <xs:element minOccurs="0" ref="offset"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.trackTarget"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.trackTarget">
+    <xs:attribute name="nodeName" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="lookTarget">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="position"/>
+        <xs:element minOccurs="0" ref="localDirectionVector"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.lookTarget"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.lookTarget">
+    <xs:attribute name="nodeName"/>
+    <xs:attribute name="relativeTo" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="local"/>
+          <xs:enumeration value="parent"/>
+          <xs:enumeration value="world"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="lightAttenuation">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.lightAttenuation"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.lightAttenuation">
+    <xs:attribute name="range" use="required"/>
+    <xs:attribute name="constant" use="required"/>
+    <xs:attribute name="linear" use="required"/>
+    <xs:attribute name="quadratic" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="spotLightRange">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.spotLightRange"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.spotLightRange">
+    <xs:attribute name="inner" use="required"/>
+    <xs:attribute name="outer" use="required"/>
+    <xs:attribute name="falloff" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="entity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="commonMovableObjectParams"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="animations"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="animationStates"/>
+        <xs:element minOccurs="0" ref="meshLODBias"/>
+        <xs:element minOccurs="0" ref="materialLODBias"/>
+        <xs:element minOccurs="0" ref="userDataReference"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.entity"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.entity">
+    <xs:attribute name="name"/>
+    <xs:attribute name="id" type="xs:ID"/>
+    <xs:attribute name="meshFile" use="required"/>
+    <xs:attribute name="materialName"/>
+    <xs:attribute name="displaySkeleton" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="polygonModeOverrideable" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="softwareAnimationRequests"/>
+    <xs:attribute name="softwareAnimationRequestsNormalsAlso"/>
+    <xs:attribute name="vertexBufferUsage" default="staticWriteOnly">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="static"/>
+          <xs:enumeration value="dynamic"/>
+          <xs:enumeration value="writeOnly"/>
+          <xs:enumeration value="staticWriteOnly"/>
+          <xs:enumeration value="dynamicWriteOnly"/>
+          <xs:enumeration value="discardable"/>
+          <xs:enumeration value="dynamicWriteOnlyDiscardable"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="vertexBufferUseShadow" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="indexBufferUsage" default="staticWriteOnly">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="static"/>
+          <xs:enumeration value="dynamic"/>
+          <xs:enumeration value="writeOnly"/>
+          <xs:enumeration value="staticWriteOnly"/>
+          <xs:enumeration value="dynamicWriteOnly"/>
+          <xs:enumeration value="discardable"/>
+          <xs:enumeration value="dynamicWriteOnlyDiscardable"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="indexBufferUseShadow" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="meshLODBias">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.meshLODBias"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.meshLODBias">
+    <xs:attribute name="factor" use="required"/>
+    <xs:attribute name="maxDetailIndex" default="0"/>
+    <xs:attribute name="minDetailIndex" default="99"/>
+  </xs:attributeGroup>
+  <xs:element name="materialLODBias">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.materialLODBias"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.materialLODBias">
+    <xs:attribute name="factor" use="required"/>
+    <xs:attribute name="maxDetailIndex" default="0"/>
+    <xs:attribute name="minDetailIndex" default="99"/>
+  </xs:attributeGroup>
+  <xs:element name="commonMovableObjectParams">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.commonMovableObjectParams"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.commonMovableObjectParams">
+    <xs:attribute name="static" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="visible" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="castShadows" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="renderingDistance" default="0"/>
+    <xs:attribute name="queryFlags"/>
+    <xs:attribute name="visibilityFlags"/>
+  </xs:attributeGroup>
+  <xs:element name="environment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="fog"/>
+        <xs:element minOccurs="0" ref="skyBox"/>
+        <xs:element minOccurs="0" ref="skyDome"/>
+        <xs:element minOccurs="0" ref="skyPlane"/>
+        <xs:element minOccurs="0" ref="clipping"/>
+        <xs:element minOccurs="0" ref="colourAmbient"/>
+        <xs:element minOccurs="0" ref="colourBackground"/>
+        <xs:element minOccurs="0" ref="userDataReference"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="clipping">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.clipping"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.clipping">
+    <xs:attribute name="nearPlaneDist" use="required"/>
+    <xs:attribute name="farPlaneDist" use="required"/>
+  </xs:attributeGroup>
+  <!--
+    <!ELEMENT fog (colourDiffuse?)>
+    <!ATTLIST fog
+    	expDensity	CDATA	"0.001"
+    	linearStart CDATA	"0.0"
+    	linearEnd	CDATA	"1.0"
+    	mode		(none | exp | exp2 | linear) "none"
+    >
+  -->
+  <xs:element name="fog">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.fog"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.fog">
+    <xs:attribute name="mode" default="none">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="none"/>
+          <xs:enumeration value="exp"/>
+          <xs:enumeration value="exp2"/>
+          <xs:enumeration value="linear"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="colourR" use="required"/>
+    <xs:attribute name="colourG" use="required"/>
+    <xs:attribute name="colourB" use="required"/>
+    <xs:attribute name="expDensity" default="0.001"/>
+    <xs:attribute name="linearStart" default="0.0"/>
+    <xs:attribute name="linearEnd" default="1.0"/>
+  </xs:attributeGroup>
+  <xs:element name="skyBox">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="orientation"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.skyBox"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.skyBox">
+    <xs:attribute name="name" use="required"/>
+    <xs:attribute name="enabled" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="materialName" use="required"/>
+    <xs:attribute name="distance" default="5000"/>
+    <xs:attribute name="drawFirst" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="skyDome">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="orientation"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.skyDome"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.skyDome">
+    <xs:attribute name="name" use="required"/>
+    <xs:attribute name="enabled" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="materialName" use="required"/>
+    <xs:attribute name="curvature" default="10"/>
+    <xs:attribute name="tiling" default="8"/>
+    <xs:attribute name="distance" default="4000"/>
+    <xs:attribute name="drawFirst" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="xsegments" default="16"/>
+    <xs:attribute name="ysegments" default="16"/>
+    <xs:attribute name="ysegments_keep" default="-1"/>
+  </xs:attributeGroup>
+  <xs:element name="skyPlane">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.skyPlane"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.skyPlane">
+    <xs:attribute name="name" use="required"/>
+    <xs:attribute name="enabled" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="planeX" default="0"/>
+    <xs:attribute name="planeY" default="-1"/>
+    <xs:attribute name="planeZ" default="0"/>
+    <xs:attribute name="planeD" default="5000"/>
+    <xs:attribute name="materialName" use="required"/>
+    <xs:attribute name="scale" default="1000"/>
+    <xs:attribute name="tiling" default="10"/>
+    <xs:attribute name="drawFirst" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="bow" default="0"/>
+    <xs:attribute name="xsegments" default="1"/>
+    <xs:attribute name="ysegments" default="1"/>
+  </xs:attributeGroup>
+  <xs:element name="billboardSet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="commonMovableObjectParams"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="billboard"/>
+        <xs:element minOccurs="0" ref="commonDirection"/>
+        <xs:element minOccurs="0" ref="commonUpVector"/>
+        <xs:choice>
+          <xs:element minOccurs="0" ref="textureCoords"/>
+          <xs:element minOccurs="0" ref="textureStacksAndSlices"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.billboardSet"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.billboardSet">
+    <xs:attribute name="name"/>
+    <xs:attribute name="id" type="xs:ID"/>
+    <xs:attribute name="poolSize" default="20"/>
+    <xs:attribute name="autoextend" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="materialName" use="required"/>
+    <xs:attribute name="defaultWidth" default="10"/>
+    <xs:attribute name="defaultHeight" default="10"/>
+    <xs:attribute name="billboardType" default="point">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="point"/>
+          <xs:enumeration value="orientedCommon"/>
+          <xs:enumeration value="orientedSelf"/>
+          <xs:enumeration value="perpendicularCommon"/>
+          <xs:enumeration value="perpendicularSelf"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="billboardOrigin" default="center">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="topLeft"/>
+          <xs:enumeration value="topCenter"/>
+          <xs:enumeration value="topRight"/>
+          <xs:enumeration value="centerLeft"/>
+          <xs:enumeration value="center"/>
+          <xs:enumeration value="centerRight"/>
+          <xs:enumeration value="bottomLeft"/>
+          <xs:enumeration value="bottomCenter"/>
+          <xs:enumeration value="bottomRight"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="billboardRotationType" default="texcoord">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="vertex"/>
+          <xs:enumeration value="texcoord"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="sortingEnabled" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="cullIndividually" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="accurateFacing" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="billboardsInWorldSpace" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="pointRenderingEnabled" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="billboard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="position"/>
+        <xs:element minOccurs="0" ref="colourDiffuse"/>
+        <xs:element minOccurs="0" ref="textureCoords"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.billboard"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.billboard">
+    <xs:attribute name="id" type="xs:ID"/>
+    <xs:attribute name="rotation"/>
+    <xs:attribute name="width"/>
+    <xs:attribute name="height"/>
+    <xs:attribute name="texcoordIndex"/>
+  </xs:attributeGroup>
+  <xs:element name="commonDirection">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.commonDirection"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.commonDirection">
+    <xs:attribute name="x" use="required"/>
+    <xs:attribute name="y" use="required"/>
+    <xs:attribute name="z" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="commonUpVector">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.commonUpVector"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.commonUpVector">
+    <xs:attribute name="x" use="required"/>
+    <xs:attribute name="y" use="required"/>
+    <xs:attribute name="z" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="textureCoords">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="floatRect"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="floatRect">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.floatRect"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.floatRect">
+    <xs:attribute name="left" use="required"/>
+    <xs:attribute name="top" use="required"/>
+    <xs:attribute name="right" use="required"/>
+    <xs:attribute name="bottom" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="textureStacksAndSlices">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.textureStacksAndSlices"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.textureStacksAndSlices">
+    <xs:attribute name="stacks" use="required"/>
+    <xs:attribute name="slices" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="animationStates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="animationState"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="animationState">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.animationState"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.animationState">
+    <xs:attribute name="enabled" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="animationName" use="required"/>
+    <xs:attribute name="timePosition" default="0"/>
+    <xs:attribute name="length"/>
+    <xs:attribute name="weight" default="1.0"/>
+    <xs:attribute name="loop" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="animations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="animation"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="animation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="nodeAnimationTrack"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="numericAnimationTrack"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="vertexAnimationTrack"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.animation"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.animation">
+    <xs:attribute name="name" use="required"/>
+    <xs:attribute name="type" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="node"/>
+          <xs:enumeration value="numeric"/>
+          <xs:enumeration value="mesh"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="length" use="required"/>
+    <xs:attribute name="interpolationMode" default="linear">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="linear"/>
+          <xs:enumeration value="spline"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="rotationInterpolationMode" default="linear">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="linear"/>
+          <xs:enumeration value="spherical"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="numericAnimationTrack">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="transformKeyFrame"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.numericAnimationTrack"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.numericAnimationTrack">
+    <xs:attribute name="handle" use="required"/>
+    <xs:attribute name="associatedNodeName" use="required"/>
+    <xs:attribute name="useShortestRotationPath" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="TargetAnimable" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="nodeAnimationTrack">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="transformKeyFrame"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.nodeAnimationTrack"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.nodeAnimationTrack">
+    <xs:attribute name="handle" use="required"/>
+    <xs:attribute name="associatedNodeName" use="required"/>
+    <xs:attribute name="useShortestRotationPath" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="transformKeyFrame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="translation"/>
+        <xs:element minOccurs="0" ref="orientation"/>
+        <xs:element minOccurs="0" ref="scale"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.transformKeyFrame"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.transformKeyFrame">
+    <xs:attribute name="timePosition" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="translation">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.translation"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.translation">
+    <xs:attribute name="x" use="required"/>
+    <xs:attribute name="y" use="required"/>
+    <xs:attribute name="z" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="vertexAnimationTrack">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="vertexMorphKeyFrame"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="vertexPoseKeyFrame"/>
+      </xs:choice>
+      <xs:attributeGroup ref="attlist.vertexAnimationTrack"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.vertexAnimationTrack">
+    <xs:attribute name="handle" use="required"/>
+    <xs:attribute name="vertexAnimationType" use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="morph"/>
+          <xs:enumeration value="pose"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="targetMode" default="software">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="software"/>
+          <xs:enumeration value="hardware"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="vertexMorphKeyFrame">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.vertexMorphKeyFrame"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.vertexMorphKeyFrame">
+    <xs:attribute name="timePosition" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="vertexPoseKeyFrame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="poseReference"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.vertexPoseKeyFrame"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.vertexPoseKeyFrame">
+    <xs:attribute name="timePosition" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="poseReference">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.poseReference"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.poseReference">
+    <xs:attribute name="poseIndex" use="required"/>
+    <xs:attribute name="influence" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="plane">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="upVector"/>
+        <xs:element minOccurs="0" ref="vertexBuffer"/>
+        <xs:element minOccurs="0" ref="indexBuffer"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.plane"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.plane">
+    <xs:attribute name="name" use="required"/>
+    <xs:attribute name="id" type="xs:ID"/>
+    <xs:attribute name="normalX" use="required"/>
+    <xs:attribute name="normalY" use="required"/>
+    <xs:attribute name="normalZ" use="required"/>
+    <xs:attribute name="distance" use="required"/>
+    <xs:attribute name="width" use="required"/>
+    <xs:attribute name="height" use="required"/>
+    <xs:attribute name="xSegments" default="1"/>
+    <xs:attribute name="ySegments" default="1"/>
+    <xs:attribute name="normals" default="true">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="numTexCoordSets" default="1"/>
+    <xs:attribute name="uTile" default="1"/>
+    <xs:attribute name="vTile" default="1"/>
+  </xs:attributeGroup>
+  <xs:element name="vertexBuffer">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.vertexBuffer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.vertexBuffer">
+    <xs:attribute name="usage" default="staticWriteOnly">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="static"/>
+          <xs:enumeration value="dynamic"/>
+          <xs:enumeration value="writeOnly"/>
+          <xs:enumeration value="staticWriteOnly"/>
+          <xs:enumeration value="dynamicWriteOnly"/>
+          <xs:enumeration value="dynamicWriteOnlyDiscardable"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="useShadow" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="indexBuffer">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.indexBuffer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.indexBuffer">
+    <xs:attribute name="usage" default="staticWriteOnly">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="static"/>
+          <xs:enumeration value="dynamic"/>
+          <xs:enumeration value="writeOnly"/>
+          <xs:enumeration value="staticWriteOnly"/>
+          <xs:enumeration value="dynamicWriteOnly"/>
+          <xs:enumeration value="dynamicWriteOnlyDiscardable"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="useShadow" default="false">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="true"/>
+          <xs:enumeration value="false"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:attributeGroup>
+  <xs:element name="externals">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="item"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="item">
+    <xs:complexType>
+      <xs:complexContent>
+        <xs:extension base="file">
+          <xs:attributeGroup ref="attlist.item"/>
+        </xs:extension>
+      </xs:complexContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.item">
+    <xs:attribute name="type" use="required"/>
+  </xs:attributeGroup>
+  <xs:complexType name="file">
+    <xs:sequence>
+      <xs:element ref="file"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="file">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.file"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.file">
+    <xs:attribute name="name" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="position">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.position"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.position">
+    <xs:attribute name="x" use="required"/>
+    <xs:attribute name="y" use="required"/>
+    <xs:attribute name="z" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="orientation">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="quaternion"/>
+        <xs:element ref="axisXYZ"/>
+        <xs:element ref="angle_axis"/>
+        <xs:element ref="direction"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="quaternion">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.quaternion"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.quaternion">
+    <xs:attribute name="x" use="required"/>
+    <xs:attribute name="y" use="required"/>
+    <xs:attribute name="z" use="required"/>
+    <xs:attribute name="w" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="axisXYZ">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.axisXYZ"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.axisXYZ">
+    <xs:attribute name="xAxisX" use="required"/>
+    <xs:attribute name="xAxisY" use="required"/>
+    <xs:attribute name="xAxisZ" use="required"/>
+    <xs:attribute name="yAxisX" use="required"/>
+    <xs:attribute name="yAxisY" use="required"/>
+    <xs:attribute name="yAxisZ" use="required"/>
+    <xs:attribute name="zAxisX" use="required"/>
+    <xs:attribute name="zAxisY" use="required"/>
+    <xs:attribute name="zAxisZ" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="angle_axis">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.angle_axis"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.angle_axis">
+    <xs:attribute name="angle" use="required"/>
+    <xs:attribute name="angleUnit" default="degree">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="degree"/>
+          <xs:enumeration value="radian"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="x" use="required"/>
+    <xs:attribute name="y" use="required"/>
+    <xs:attribute name="z" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="direction">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.direction"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.direction">
+    <xs:attribute name="x" use="required"/>
+    <xs:attribute name="y" use="required"/>
+    <xs:attribute name="z" use="required"/>
+    <xs:attribute name="relativeTo" default="local">
+      <xs:simpleType>
+        <xs:restriction base="xs:token">
+          <xs:enumeration value="local"/>
+          <xs:enumeration value="parent"/>
+          <xs:enumeration value="world"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="localDirX" default="0"/>
+    <xs:attribute name="localDirY" default="0"/>
+    <xs:attribute name="localDirZ" default="-1"/>
+  </xs:attributeGroup>
+  <xs:element name="normal">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.normal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.normal">
+    <xs:attribute name="x" use="required"/>
+    <xs:attribute name="y" use="required"/>
+    <xs:attribute name="z" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="upVector">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.upVector"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.upVector">
+    <xs:attribute name="x" use="required"/>
+    <xs:attribute name="y" use="required"/>
+    <xs:attribute name="z" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="offset">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.offset"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.offset">
+    <xs:attribute name="x" use="required"/>
+    <xs:attribute name="y" use="required"/>
+    <xs:attribute name="z" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="localDirectionVector">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.localDirectionVector"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.localDirectionVector">
+    <xs:attribute name="x" use="required"/>
+    <xs:attribute name="y" use="required"/>
+    <xs:attribute name="z" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="scale">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.scale"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.scale">
+    <xs:attribute name="x" use="required"/>
+    <xs:attribute name="y" use="required"/>
+    <xs:attribute name="z" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="colourDiffuse">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.colourDiffuse"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.colourDiffuse">
+    <xs:attribute name="r" use="required"/>
+    <xs:attribute name="g" use="required"/>
+    <xs:attribute name="b" use="required"/>
+    <xs:attribute name="a"/>
+  </xs:attributeGroup>
+  <xs:element name="colourSpecular">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.colourSpecular"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.colourSpecular">
+    <xs:attribute name="r" use="required"/>
+    <xs:attribute name="g" use="required"/>
+    <xs:attribute name="b" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="colourAmbient">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.colourAmbient"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.colourAmbient">
+    <xs:attribute name="r" use="required"/>
+    <xs:attribute name="g" use="required"/>
+    <xs:attribute name="b" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="colourBackground">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.colourBackground"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.colourBackground">
+    <xs:attribute name="r" use="required"/>
+    <xs:attribute name="g" use="required"/>
+    <xs:attribute name="b" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="userDataReference">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.userDataReference"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.userDataReference">
+    <xs:attribute name="id" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="octNode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="octNode"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="octMesh"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.octNode"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.octNode">
+    <xs:attribute name="px" use="required"/>
+    <xs:attribute name="py" use="required"/>
+    <xs:attribute name="pz" use="required"/>
+    <xs:attribute name="width" use="required"/>
+    <xs:attribute name="height" use="required"/>
+    <xs:attribute name="depth" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="octree">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="octNode"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="attlist.octree"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.octree">
+    <xs:attribute name="binFile" use="required"/>
+  </xs:attributeGroup>
+  <xs:element name="octMesh">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="octGeometry"/>
+        <xs:element ref="octMaterial"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="octGeometry">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.octGeometry"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.octGeometry">
+    <xs:attribute name="binaryDataOffset" use="required"/>
+    <xs:attribute name="vertTotal" use="required"/>
+    <xs:attribute name="triTotal" use="required"/>
+    <xs:attribute name="normalTotal"/>
+    <xs:attribute name="colorTotal"/>
+    <xs:attribute name="texSets"/>
+    <xs:attribute name="texTotal"/>
+  </xs:attributeGroup>
+  <xs:element name="octMaterial">
+    <xs:complexType>
+      <xs:attributeGroup ref="attlist.octMaterial"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.octMaterial">
+    <xs:attribute name="name" use="required"/>
+    <xs:attribute name="texture"/>
+  </xs:attributeGroup>
+</xs:schema>

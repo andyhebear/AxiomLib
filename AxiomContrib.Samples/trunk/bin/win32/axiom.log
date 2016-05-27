@@ -1,0 +1,130 @@
+[04:55:29] *********Axiom 3D Engine Log *************
+Copyright Copyright © 2003-2011 Axiom Rendering Engine Project Team.
+Version: 0.8.0.0
+Operating System: Microsoft Windows NT 5.1.2600 Service Pack 3
+.Net Framework: 4.0.30319.235
+
+[04:55:29] *-*-* Axiom Initializing
+[04:55:29] ArchiveFactory for archive type ZipFile registered.
+[04:55:29] ArchiveFactory for archive type Folder registered.
+[04:55:29] Registering ResourceManager for type HighLevelGpuProgram
+[04:55:29] Creating resource group General
+[04:55:30] Creating resource group Internal
+[04:55:30] Creating resource group Bootstrap
+[04:55:30] Creating resource group AutoDetect
+[04:55:30] SceneManagerFactory for type 'DefaultSceneManager' registered
+[04:55:30] Registering ResourceManager for type Mesh
+[04:55:30] Registering ResourceManager for type Skeleton
+[04:55:30] 无法加载一个或多个请求的类型。有关更多信息，请检索 LoaderExceptions 属性。
+   在 System.Reflection.RuntimeModule.GetTypes(RuntimeModule module)
+   在 System.Reflection.RuntimeModule.GetTypes()
+   在 System.Reflection.Assembly.GetTypes()
+   在 Axiom.Core.DynamicLoader.Find(Type baseType)
+[04:55:30] Loader Exceptions:
+[04:55:30] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:30] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:30] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:31] Win32 Platform Manager Loaded.
+[04:55:31] Registering ScriptLoader for patterns *.fontdef 
+[04:55:31] Registering ResourceManager for type Font
+[04:55:31] Registering ScriptLoader for patterns *.overlay 
+[04:55:32] OverlayElementFactory for type 'BorderPanel' registered.
+[04:55:32] OverlayElementFactory for type 'TextArea' registered.
+[04:55:32] OverlayElementFactory for type 'Panel' registered.
+[04:55:32] Registering ScriptLoader for patterns *.compositor 
+[04:55:32] Registering ResourceManager for type Compositor
+[04:55:32] Registering ScriptLoader for patterns *.program *.material *.particle *.compositor *.os 
+[04:55:34] 无法加载一个或多个请求的类型。有关更多信息，请检索 LoaderExceptions 属性。
+   在 System.Reflection.RuntimeModule.GetTypes(RuntimeModule module)
+   在 System.Reflection.RuntimeModule.GetTypes()
+   在 System.Reflection.Assembly.GetTypes()
+   在 Axiom.Core.DynamicLoader.Find(Type baseType)
+[04:55:34] Loader Exceptions:
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:34] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:36] 无法加载一个或多个请求的类型。有关更多信息，请检索 LoaderExceptions 属性。
+   在 System.Reflection.RuntimeModule.GetTypes(RuntimeModule module)
+   在 System.Reflection.RuntimeModule.GetTypes()
+   在 System.Reflection.Assembly.GetTypes()
+   在 Axiom.Core.DynamicLoader.Find(Type baseType)
+[04:55:36] Loader Exceptions:
+[04:55:36] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:36] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:36] 未能加载文件或程序集“SlimDX, Version=2.0.10.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9”或它的某一个依赖项。The system cannot find the file specified.
+
+[04:55:36] OpenGL OpenTK Renderer requires OpenTK Platform Manager.
+参数名: PlatformManager
+   在 Axiom.Utilities.Contract.Requires(Boolean condition, String name, String message)
+   在 Axiom.RenderSystems.OpenGL.Plugin.Initialize()
+   在 Axiom.Core.PluginManager.LoadPlugin(ObjectCreator creator)
+[04:55:36] Loaded plugin: Axiom.Samples.Common
+[04:55:36] Loaded plugin: Axiom nVidia Cg Plugin
+[04:55:36] SceneManagerFactory for type 'BspSceneManager' registered
+[04:55:36] Loaded plugin: Axiom BSP Scene Manager Plugin
+[04:55:36] Loaded plugin: Axiom.Samples.Hydrax
+[04:55:36] Particle Emitter type 'Box' registered.
+[04:55:36] Particle Emitter type 'Point' registered.
+[04:55:36] Particle Emitter type 'Cylinder' registered.
+[04:55:36] Particle Emitter type 'Ellipsoid' registered.
+[04:55:36] Particle Emitter type 'HollowEllipsoid' registered.
+[04:55:36] Particle Emitter type 'Ring' registered.
+[04:55:36] Particle Affector type 'LinearForce' registered.
+[04:55:36] Particle Affector type 'ColourFader' registered.
+[04:55:36] Particle Affector type 'ColourFader2' registered.
+[04:55:36] Particle Affector type 'ColourImage' registered.
+[04:55:36] Particle Affector type 'ColourInterpolator' registered.
+[04:55:36] Particle Affector type 'Scaler' registered.
+[04:55:36] Particle Affector type 'Rotator' registered.
+[04:55:36] Particle Affector type 'DeflectorPlane' registered.
+[04:55:36] Particle Affector type 'DirectionRandomizer' registered.
+[04:55:36] Loaded plugin: Axiom ParticleFX Plugin
+[04:55:36] FreeImage Version: 3.14.1
+[04:55:36] This program uses FreeImage, a free, open source image library supporting all common bitmap formats. See http://freeimage.sourceforge.net for details
+[04:55:36]  Supported formats: bmp,ico,jpg,jif,jpeg,jpe,jng,koa,iff,lbm,mng,pbm,pbm,pcd,pcx,pgm,pgm,png,ppm,ppm,ras,tga,targa,tif,tiff,wap,wbmp,wbm,psd,cut,xbm,xpm,gif,hdr,g3,sgi,exr,j2k,j2c,jp2,pfm,pct,pict,pic,bay,bmq,cr2,crw,cs1,dc2,dcr,dng,erf,fff,hdr,k25,kdc,mdc,mos,mrw,nef,orf,pef,pxn,raf,raw,rdc,sr2,srf,arw,3fr,cine,ia,kc2,mef,nrw,qtk,rw2,sti,drf,dsc,ptx,cap,iiq,rwz
+[04:55:36] Loaded plugin: Axiom FreeImage Codecs Plugin
+[04:55:36] Factory EntityFactory registered for MovableObjectType 'Entity'.
+[04:55:36] Factory LightFactory registered for MovableObjectType 'Light'.
+[04:55:36] Factory BillboardSetFactory registered for MovableObjectType 'BillboardSet'.
+[04:55:36] Factory ManualObjectFactory registered for MovableObjectType 'ManualObject'.
+[04:55:36] Factory BillboardChainFactory registered for MovableObjectType 'BillboardChain'.
+[04:55:36] Factory RibbonTrailFactory registered for MovableObjectType 'RibbonTrail'.
+[04:55:36] Factory MovableTextFactory registered for MovableObjectType 'MovableText'.

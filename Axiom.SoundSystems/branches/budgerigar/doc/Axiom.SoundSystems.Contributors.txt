@@ -1,0 +1,4 @@
+The following people contributed to this project (feel free to add your name):
+Ilmar 'SeaEagle1' Kruis - ikruis@gmail.com - Founder
+andris11 - andris11@users.sourceforge.net - Xna.Simple plugin
+migel - OpenAL.OpenTK plugin

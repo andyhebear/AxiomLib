@@ -1,0 +1,4 @@
+[06:13:14] Registering ResourceManager for type Mesh
+[06:13:14] Registering ScriptLoader for patterns *.program *.material 
+[06:13:14] Registering ResourceManager for type Material
+[06:13:15] Registering ResourceManager for type Skeleton

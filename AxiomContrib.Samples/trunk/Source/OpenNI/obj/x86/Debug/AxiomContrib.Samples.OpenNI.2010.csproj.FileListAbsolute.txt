@@ -1,0 +1,8 @@
+C:\Projects\axiomcontrib\Axiom.Samples\trunk\bin\samples\AxiomContrib.Samples.OpenNISample.dll
+C:\Projects\axiomcontrib\Axiom.Samples\trunk\bin\samples\AxiomContrib.Samples.OpenNISample.pdb
+C:\Projects\axiomcontrib\Axiom.Samples\trunk\Source\OpenNI\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Projects\axiomcontrib\Axiom.Samples\trunk\Source\OpenNI\obj\x86\Debug\AxiomContrib.Samples.OpenNISample.dll
+C:\Projects\axiomcontrib\Axiom.Samples\trunk\Source\OpenNI\obj\x86\Debug\AxiomContrib.Samples.OpenNISample.pdb
+C:\Projects\axiomcontrib\AxiomContrib.Samples\trunk\Source\OpenNI\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Projects\axiomcontrib\AxiomContrib.Samples\trunk\Source\OpenNI\obj\x86\Debug\AxiomContrib.Samples.OpenNISample.dll
+C:\Projects\axiomcontrib\AxiomContrib.Samples\trunk\Source\OpenNI\obj\x86\Debug\AxiomContrib.Samples.OpenNISample.pdb

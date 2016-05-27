@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Axiom.SoundSystems.CameraListener" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <Members>
+      <Field Name="_cameraObject" Hidden="true" />
+      <Field Name="_velocity" Hidden="true" />
+      <Method Name="CameraListener" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQIAAAAgAAAgABAAAAAAAAAAAAAAAAAEAAI=</HashCode>
+      <FileName>CameraListener.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Axiom.SoundSystems.SoundInstance" BaseTypeListCollapsed="true">
+    <Position X="10.75" Y="4.75" Width="1.75" />
+    <Members>
+      <Method Name="_dispose" Hidden="true" />
+      <Field Name="_distanceScale" Hidden="true" />
+      <Field Name="_dopplerScale" Hidden="true" />
+      <Field Name="_effects" Hidden="true" />
+      <Field Name="_explicitStop" Hidden="true" />
+      <Field Name="_forward" Hidden="true" />
+      <Field Name="_isDisposed" Hidden="true" />
+      <Field Name="_kind" Hidden="true" />
+      <Field Name="_loop" Hidden="true" />
+      <Field Name="_orientation" Hidden="true" />
+      <Field Name="_pan" Hidden="true" />
+      <Field Name="_parentSound" Hidden="true" />
+      <Field Name="_pitch" Hidden="true" />
+      <Field Name="_position" Hidden="true" />
+      <Field Name="_speedOfSound" Hidden="true" />
+      <Field Name="_state" Hidden="true" />
+      <Field Name="_up" Hidden="true" />
+      <Field Name="_velocity" Hidden="true" />
+      <Field Name="_volume" Hidden="true" />
+      <Property Name="BoundingBox" Hidden="true" />
+      <Property Name="BoundingRadius" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="NotifyCurrentCamera" Hidden="true" />
+      <Method Name="SoundInstance" Hidden="true" />
+      <Method Name="Update" Hidden="true" />
+      <Method Name="UpdateFromParent" Hidden="true" />
+      <Method Name="UpdateRenderQueue" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="Kind" Type="Axiom.SoundSystems.SoundKind" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="12.5" Y="5.6" />
+        <Point X="12.75" Y="5.6" />
+        <Point X="12.75" Y="3.988" />
+        <Point X="12" Y="3.988" />
+        <Point X="12" Y="3.688" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QAQggAIIASJkI4AhAEQACRCAgCBAJAwAoAJApACEQBI=</HashCode>
+      <FileName>SoundInstance.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Kind" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Axiom.SoundSystems.SoundContext">
+    <Position X="4" Y="0.5" Width="2" />
+    <Members>
+      <Field Name="_defaultSoundSettings" Hidden="true" />
+      <Field Name="_isDisposed" Hidden="true" />
+      <Field Name="_queuedForDisposal" Hidden="true" />
+      <Field Name="_soundInstanceMap" Hidden="true" />
+      <Field Name="_soundListener" Hidden="true" />
+      <Field Name="_soundMap" Hidden="true" />
+      <Method Name="CopySettings" Hidden="true" />
+      <Property Name="DefaultSpeedOfSound" Hidden="true" />
+      <Method Name="dispose" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Event Name="Disposing" Hidden="true" />
+      <Property Name="IsDisposed" Hidden="true" />
+      <Field Name="mActive" Hidden="true" />
+      <Field Name="mWindow" Hidden="true" />
+      <Field Name="mWindowListener" Hidden="true" />
+      <Method Name="NotifyLoaded" Hidden="true" />
+      <Field Name="pausedSounds" Hidden="true" />
+      <Method Name="PauseReplay" Hidden="true" />
+      <Method Name="PauseSound" Hidden="true" />
+      <Property Name="QueuedForDisposal" Hidden="true" />
+      <Method Name="ResumeReplay" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="Axiom.SoundSystems.SoundContext.WindowEventListener" Collapsed="true">
+        <Members>
+          <Field Name="mContext" Hidden="true" />
+        </Members>
+        <TypeIdentifier>
+          <NewMemberFileName>SoundContext.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <AssociationLine Name="SoundListener" Type="Axiom.SoundSystems.ISoundListener">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.089" Y="0.102" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="DefaultSoundSettings" Type="Axiom.SoundSystems.SoundSettings" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6" Y="2.25" />
+        <Point X="6.359" Y="2.25" />
+        <Point X="6.359" Y="6.179" />
+        <Point X="7.25" Y="6.179" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QgYAICAAACAAAAAgAAAAAlCIAAEAAgCoBLAASACAQSA=</HashCode>
+      <FileName>SoundContext.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SoundListener" />
+      <Property Name="DefaultSoundSettings" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Axiom.SoundSystems.SoundSystemsException" Collapsed="true">
+    <Position X="0.5" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SoundSystemsException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Axiom.SoundSystems.SoundsRoot">
+    <Position X="0.5" Y="2.75" Width="2" />
+    <Members>
+      <Field Name="_defaultSoundContext" Hidden="true" />
+      <Field Name="_soundContexts" Hidden="true" />
+      <Field Name="_soundContextTypeMap" Hidden="true" />
+      <Method Name="dispose" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="DefaultSoundContext" Type="Axiom.SoundSystems.SoundContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.016" Y="0.084" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAABACAAAgAEAAgAAAAAAAAAACQAIAAAAAAAAAAAgA=</HashCode>
+      <FileName>SoundsRoot.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="DefaultSoundContext" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.106" />
+  </Class>
+  <Class Name="Axiom.SoundSystems.Sound">
+    <Position X="9" Y="4.75" Width="1.5" />
+    <Members>
+      <Field Name="_creator" Hidden="true" />
+      <Method Name="_dispose" Hidden="true" />
+      <Field Name="_distanceScale" Hidden="true" />
+      <Field Name="_dopplerScale" Hidden="true" />
+      <Field Name="_effects" Hidden="true" />
+      <Field Name="_fileName" Hidden="true" />
+      <Field Name="_forward" Hidden="true" />
+      <Field Name="_id" Hidden="true" />
+      <Field Name="_isDisposed" Hidden="true" />
+      <Field Name="_kind" Hidden="true" />
+      <Field Name="_loop" Hidden="true" />
+      <Field Name="_name" Hidden="true" />
+      <Field Name="_orientation" Hidden="true" />
+      <Field Name="_pan" Hidden="true" />
+      <Field Name="_pitch" Hidden="true" />
+      <Field Name="_position" Hidden="true" />
+      <Field Name="_speedOfSound" Hidden="true" />
+      <Field Name="_uniqueKeyCounter" Hidden="true" />
+      <Field Name="_up" Hidden="true" />
+      <Field Name="_velocity" Hidden="true" />
+      <Field Name="_volume" Hidden="true" />
+      <Method Name="CreateSoundInstance" Hidden="true" />
+      <Method Name="Dispose" Hidden="true" />
+      <Method Name="GenerateUniqueKey" Hidden="true" />
+      <Method Name="GetNextId" Hidden="true" />
+      <Method Name="GetUniqueName" Hidden="true" />
+      <Method Name="Load" Hidden="true" />
+      <Method Name="NotifyCreated" Hidden="true" />
+      <Method Name="Sound" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="Kind" Type="Axiom.SoundSystems.SoundKind" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="10.5" Y="5.611" />
+        <Point X="10.673" Y="5.611" />
+        <Point X="10.673" Y="4.006" />
+        <Point X="11.312" Y="4.006" />
+        <Point X="11.312" Y="3.688" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AIAAoAIIASLkIhQhAARAARSAAAJAJAQAkAJAoADGQBI=</HashCode>
+      <FileName>Sound.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Kind" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Axiom.SoundSystems.Singleton&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAACAEAQAgEAAAAAAAAABAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Singleton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Axiom.SoundSystems.SoundSettings">
+    <Position X="7.25" Y="4.75" Width="1.5" />
+    <Members>
+      <Field Name="_distanceScale" Hidden="true" />
+      <Field Name="_dopplerScale" Hidden="true" />
+      <Field Name="_effects" Hidden="true" />
+      <Field Name="_forward" Hidden="true" />
+      <Field Name="_kind" Hidden="true" />
+      <Field Name="_loop" Hidden="true" />
+      <Field Name="_orientation" Hidden="true" />
+      <Field Name="_pan" Hidden="true" />
+      <Field Name="_pitch" Hidden="true" />
+      <Field Name="_position" Hidden="true" />
+      <Field Name="_speedOfSound" Hidden="true" />
+      <Field Name="_up" Hidden="true" />
+      <Field Name="_velocity" Hidden="true" />
+      <Field Name="_volume" Hidden="true" />
+      <Method Name="SoundSettings" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIIAQJgIgAgAAQAAQAAAABAJAQAAAJAoACEYBI=</HashCode>
+      <FileName>SoundSettings.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Axiom.SoundSystems.Effects.VolumeEffect" Collapsed="true">
+    <Position X="13.25" Y="3.75" Width="2" />
+    <Members>
+      <Field Name="_attenuationFunc" Hidden="true" />
+      <Field Name="_controller" Hidden="true" />
+      <Method Name="_dispose" Hidden="true" />
+      <Field Name="_emitterVolume" Hidden="true" />
+      <Field Name="_endVolume" Hidden="true" />
+      <Field Name="_frameTimeValue" Hidden="true" />
+      <Field Name="_startVolume" Hidden="true" />
+      <Method Name="ChangeEffectState" Hidden="true" />
+      <Method Name="OnExtentReached" Hidden="true" />
+      <Method Name="VolumeEffect" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACKAAAAQEAEAEAAAAAAAAAQBAAAAAAAgAAFIAABA=</HashCode>
+      <FileName>Effects\VolumeEffect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Axiom.SoundSystems.Effects.NoEffect" Collapsed="true">
+    <Position X="13.25" Y="3" Width="2" />
+    <Members>
+      <Field Name="_duration" Hidden="true" />
+      <Field Name="_stopwatch" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAABAAAAAAAAAABAAAAAgAAAAAABA=</HashCode>
+      <FileName>Effects\NoEffect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Axiom.SoundSystems.Effects.PitchEffect" Collapsed="true">
+    <Position X="13.25" Y="4.5" Width="2" />
+    <Members>
+      <Field Name="_attenuationFunc" Hidden="true" />
+      <Field Name="_controller" Hidden="true" />
+      <Method Name="_dispose" Hidden="true" />
+      <Field Name="_emitterPitch" Hidden="true" />
+      <Field Name="_endPitch" Hidden="true" />
+      <Field Name="_frameTimeValue" Hidden="true" />
+      <Field Name="_startPitch" Hidden="true" />
+      <Method Name="ChangeEffectState" Hidden="true" />
+      <Method Name="OnExtentReached" Hidden="true" />
+    </Members>
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAACKAAAAQEggAEAAAAAAAAAQAAAAAAAAgAAFIAABA=</HashCode>
+      <FileName>Effects\PitchEffect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Axiom.SoundSystems.ISoundEmitter">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIIAQBAAgAgAAQAAAAAAAAAAAAAAAJAIAAEABI=</HashCode>
+      <FileName>ISoundEmitter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Axiom.SoundSystems.ISoundListener">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAgAAAAAAAAAAAAAAAAAAAAAAAEAAI=</HashCode>
+      <FileName>ISoundListener.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Axiom.SoundSystems.ISingleton&lt;T&gt;" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Singleton.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Axiom.SoundSystems.Effects.IEmitterEffect">
+    <Position X="13.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAICAAAAAQAAAAAAAAAAAAAAQAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Effects\IEmitterEffect.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Axiom.SoundSystems.SoundKind">
+    <Position X="10.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>

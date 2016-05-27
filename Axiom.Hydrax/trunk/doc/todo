@@ -1,0 +1,12 @@
+- implement cfgfilemanager
+- implement decalsmanager
+- bugfixes:
+	- underwater reflection
+	- underwater compositor
+	- underwater godrays
+	- dispose of classes
+	- perlin noise
+	- simple grid
+	- radial grid
+
+- polish code

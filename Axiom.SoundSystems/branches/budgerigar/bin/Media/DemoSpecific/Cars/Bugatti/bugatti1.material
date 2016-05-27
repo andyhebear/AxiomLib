@@ -1,0 +1,162 @@
+// disc brake
+material bugatti1/Material.010
+{	
+
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+
+			ambient 0 0 0 1
+			diffuse 1 0 0 1
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0 0 0 1.0
+		}
+	}
+}
+// wheels
+material bugatti1/Material.009
+{
+	
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+
+			ambient 0 0 0 1
+			diffuse 0.05 0.05 0.05 1
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0 0 0 1.0
+		}
+	}
+}
+// outer back lights
+material bugatti1/Material.004
+{
+	
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+
+			ambient 0 0 0 1
+			diffuse 1 0.8 0 1
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0 0 0 1.0
+		}
+	}
+}
+// air catch
+material bugatti1/Material.005
+{
+	
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+
+			ambient 0 0 0 1
+			diffuse 1 1 0 1
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0 0 0 1.0
+		}
+	}
+}
+// body parts
+material bugatti1/Material.006
+{
+	
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+
+			ambient 0 0 0 1
+			diffuse 0 0.4 1 1
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0 0 0 1.0
+		}
+	}
+}
+// wheel axle
+material bugatti1/Material.007
+{
+	
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+
+			ambient 0 0 0 1
+			diffuse 1 1 0 1
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0 0 0 1.0
+		}
+	}
+}
+// ???
+material bugatti1/Material.001
+{
+	
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+
+			ambient 0 0 0 1
+			diffuse 1 1 1 1
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0 0 0 1.0
+		}
+	}
+}
+// ???
+material bugatti1/Material.002
+{
+	
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+
+			ambient 0 0 0 1
+			diffuse 1.0 1.0 1.0 1.0
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0 0 0 1.0
+		}
+	}
+}
+// inner back lights
+material bugatti1/Material.003
+{
+	
+	technique
+	{
+		pass
+		{
+			cull_hardware none
+			cull_software none
+
+			ambient 0 0 0 1
+			diffuse 1 0 0 1
+			specular 0.5 0.5 0.5 1.0 12.5
+			emissive 0 0 0 1.0
+		}
+	}
+}

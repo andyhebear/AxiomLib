@@ -1,0 +1,354 @@
+
+F:\_adam\axiomcontrib\OpenAsset\trunk\src\OpenAsset.Import.Collada\Collada_1_4\generated>del *.cs 
+
+accessor 
+Writing file accessor.cs 
+
+animation 
+Writing file animation.cs 
+
+animation_clip 
+Writing file animation_clip.cs 
+
+asset 
+Writing file asset.cs 
+
+binding_material 
+Warning: cannot generate classes because no top-level elements with complex type were found.
+
+binding_material.cs 
+
+bool_array 
+Writing file bool_array.cs 
+
+box 
+Writing file box.cs 
+
+camera 
+Writing file camera.cs 
+
+capsule 
+Writing file capsule.cs 
+
+channel 
+Writing file channel.cs 
+
+collada 
+Warning: cannot generate classes because no top-level elements with complex type were found.
+
+collada.cs 
+
+controller 
+Writing file controller.cs 
+
+convex_mesh 
+Writing file convex_mesh.cs 
+
+cylinder 
+Writing file cylinder.cs 
+
+effect 
+
+If you would like more help, please type "xsd /?".
+
+effect.cs 
+
+ellipsoid 
+Writing file ellipsoid.cs 
+
+extra 
+Writing file extra.cs 
+
+float_array 
+Writing file float_array.cs 
+
+force_field 
+Writing file force_field.cs 
+
+fx_profile_abstract 
+Warning: cannot generate classes because no top-level elements with complex type were found.
+
+fx_profile_abstract.cs 
+
+geometry 
+Writing file geometry.cs 
+
+gl_hook_abstract 
+Warning: cannot generate classes because no top-level elements with complex type were found.
+
+gl_hook_abstract.cs 
+
+IDREF_array 
+Writing file IDREF_array.cs 
+
+image 
+Writing file image.cs 
+
+instance_camera 
+Writing file instance_camera.cs 
+
+instance_controller 
+Writing file instance_controller.cs 
+
+instance_effect 
+
+If you would like more help, please type "xsd /?".
+
+instance_effect.cs 
+
+instance_force_field 
+Writing file instance_force_field.cs 
+
+instance_geometry 
+Writing file instance_geometry.cs 
+
+instance_light 
+Writing file instance_light.cs 
+
+instance_material 
+Writing file instance_material.cs 
+
+instance_node 
+Writing file instance_node.cs 
+
+instance_physics_material 
+Writing file instance_physics_material.cs 
+
+instance_rigid_body 
+Writing file instance_rigid_body.cs 
+
+instance_rigid_constraint 
+Writing file instance_rigid_constraint.cs 
+
+int_array 
+Writing file int_array.cs 
+
+library_animation_clips 
+Writing file library_animation_clips.cs 
+
+library_animations 
+Writing file library_animations.cs 
+
+library_cameras 
+Writing file library_cameras.cs 
+
+library_controllers 
+Writing file library_controllers.cs 
+
+library_effects 
+If you would like more help, please type "xsd /?".
+
+library_effects.cs 
+
+library_force_fields 
+Writing file library_force_fields.cs 
+
+library_images 
+Writing file library_images.cs 
+
+library_lights 
+Writing file library_lights.cs 
+
+library_materials 
+
+If you would like more help, please type "xsd /?".
+
+library_materials.cs 
+
+library_nodes 
+Writing file library_nodes.cs 
+
+library_physics_materials 
+Writing file library_physics_materials.cs 
+
+library_physics_models 
+Writing file library_physics_models.cs 
+
+library_physics_scenes 
+Writing file library_physics_scenes.cs 
+
+library_visual_scenes 
+
+If you would like more help, please type "xsd /?".
+
+library_visual_scenes.cs 
+
+light 
+Writing file light.cs 
+
+lines 
+Writing file lines.cs 
+
+linestrips 
+Writing file linestrips.cs 
+
+lookat 
+Writing file lookat.cs 
+
+material 
+
+If you would like more help, please type "xsd /?".
+
+material.cs 
+
+matrix 
+Writing file matrix.cs 
+
+mesh 
+Writing file mesh.cs 
+
+morph 
+Writing file morph.cs 
+
+Name_array 
+Writing file Name_array.cs 
+
+node 
+Writing file node.cs 
+
+p 
+Warning: cannot generate classes because no top-level elements with complex type were found.
+
+p.cs 
+
+param 
+Writing file param.cs 
+
+physics_material 
+Writing file physics_material.cs 
+
+physics_model 
+Writing file physics_model.cs 
+
+plane 
+Writing file plane.cs 
+
+polygons 
+Writing file polygons.cs 
+
+polylist 
+Writing file polylist.cs 
+
+profile_CG 
+
+If you would like more help, please type "xsd /?".
+
+profile_CG.cs 
+
+profile_COMMON 
+
+If you would like more help, please type "xsd /?".
+
+profile_COMMON.cs 
+
+profile_GLES 
+
+If you would like more help, please type "xsd /?".
+
+profile_GLES.cs 
+
+profile_GLSL 
+
+If you would like more help, please type "xsd /?".
+
+profile_GLSL.cs 
+
+rigid_body 
+Writing file rigid_body.cs 
+
+rigid_constraint 
+Writing file rigid_constraint.cs 
+
+rotate 
+Writing file rotate.cs 
+
+sampler 
+Writing file sampler.cs 
+
+scale 
+Writing file scale.cs 
+
+skew 
+Writing file skew.cs 
+
+skin 
+Writing file skin.cs 
+
+source 
+Writing file source.cs 
+
+sphere 
+Writing file sphere.cs 
+
+spline 
+Writing file spline.cs 
+
+tapered_capsule 
+Writing file tapered_capsule.cs 
+
+tapered_cylinder 
+Writing file tapered_cylinder.cs 
+
+technique 
+Writing file technique.cs 
+
+translate 
+Writing file translate.cs 
+
+triangles 
+Writing file triangles.cs 
+
+trifans 
+Writing file trifans.cs 
+
+tristrips 
+Writing file tristrips.cs 
+
+vertices 
+Writing file vertices.cs 
+
+visual_scene 
+
+If you would like more help, please type "xsd /?".
+
+visual_scene.cs 
+
+cg_param_type 
+Warning: cannot generate classes because no top-level elements with complex type were found.
+
+cg_param_type.cs 
+
+fx_annotate_type_common 
+Warning: cannot generate classes because no top-level elements with complex type were found.
+
+fx_annotate_type_common.cs 
+
+fx_basic_type_common 
+Warning: cannot generate classes because no top-level elements with complex type were found.
+
+fx_basic_type_common.cs 
+
+fx_surface_init_common 
+Warning: cannot generate classes because no top-level elements with complex type were found.
+
+fx_surface_init_common.cs 
+
+gl_pipeline_settings 
+Warning: cannot generate classes because no top-level elements with complex type were found.
+
+gl_pipeline_settings.cs 
+
+gles_basic_type_common 
+Warning: cannot generate classes because no top-level elements with complex type were found.
+
+gles_basic_type_common.cs 
+
+gles_pipeline_settings 
+Warning: cannot generate classes because no top-level elements with complex type were found.
+
+gles_pipeline_settings.cs 
+
+glsl_param_type 
+Warning: cannot generate classes because no top-level elements with complex type were found.
+
+glsl_param_type.cs 

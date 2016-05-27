@@ -1,0 +1,161 @@
+material 3D-Diggers/SkyBox
+{
+	technique
+	{
+		pass
+		{
+			fog_override true none
+			lighting off
+			depth_write off
+
+			texture_unit
+			{
+				cubic_texture 3ddsky_0001.jpg 3ddsky_0003.jpg 3ddsky_0004.jpg 3ddsky_0002.jpg 3ddsky_0005.jpg 3ddsky_0006.jpg separateUV
+				tex_address_mode clamp
+			}
+		}
+	}
+}
+
+material 3D-Diggers/shroom1
+{
+	technique Default
+	{
+		pass Main
+		{
+			ambient 0.5 0.5 0.5 1
+			diffuse 0.6 0.6 0.6 1
+			alpha_rejection greater_equal 128
+			
+
+			texture_unit
+			{
+				
+				texture shroom1.png alpha
+			}
+		}
+	}
+}
+
+material 3D-Diggers/shroom2
+{
+	technique Default
+	{
+		pass Main
+		{
+			ambient 0.5 0.5 0.5 1
+			diffuse 0.6 0.6 0.6 1
+			alpha_rejection greater_equal 128
+			
+
+			texture_unit
+			{
+				
+				texture shroom2.png alpha
+			}
+		}
+	}
+}
+material 3D-Diggers/plant2
+{
+	technique Default
+	{
+		
+		pass Main
+		{
+			ambient 0.5 0.5 0.5 1
+			diffuse 0.6 0.6 0.6 1
+
+			alpha_rejection greater_equal 128
+
+			texture_unit
+			{
+				
+				texture plant2.png
+			}
+		}
+	}
+}
+material grass
+{
+	technique
+	{
+		
+		
+		pass
+		{
+			//lighting off
+			cull_hardware none
+			cull_software none
+			scene_blend alpha_blend
+			//
+			//depth_write off
+			alpha_rejection greater_equal 128
+			
+			texture_unit
+			{
+				
+				texture grass.png
+			}
+		}
+	}
+}
+material 3D-Diggers/farn01
+{
+	technique Default
+	{
+
+		pass Main
+		{
+			ambient 0.5 0.5 0.5 1
+			diffuse 0.6 0.6 0.6 1
+
+			alpha_rejection greater_equal 128
+			
+			texture_unit
+			{
+				texture farn01.png
+			}
+		}
+	}
+}
+
+material 3D-Diggers/fir01
+{
+	technique Default
+	{
+		
+		
+		pass Main
+		{
+			ambient 0.5 0.5 0.5 1
+			diffuse 0.6 0.6 0.6 1
+
+			alpha_rejection greater_equal 128
+
+			texture_unit
+			{
+			    
+				texture fir01.png 
+			}
+		}
+	}
+}
+
+material 3D-Diggers/fir02
+{
+	technique Default
+	{
+		pass Main
+		{
+			ambient 0.5 0.5 0.5 1
+			diffuse 0.6 0.6 0.6 1
+
+			texture_unit
+			{
+				texture_alias diffuse
+				texture fir02.jpg
+			}
+		}
+	}
+}

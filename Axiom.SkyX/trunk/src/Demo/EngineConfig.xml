@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<EngineConfig xmlns="http://tempuri.org/EngineConfig.xsd">
+  <FilePath type="ZipFile" src="../Content/AxiomCore.zip" group="bootstrap"/>
+  <FilePath type="Folder" src="../Content/materials/programs"/>
+  <FilePath type="Folder" src="../Content/materials/scripts"/>
+  <FilePath type="Folder" src="../Content/materials/textures"/>
+  <FilePath type="Folder" src="../Content/models"/>
+  <FilePath type="Folder" src="../Content/SkyX"/>
+</EngineConfig>
